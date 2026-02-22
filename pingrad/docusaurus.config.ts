@@ -6,7 +6,7 @@ const githubRepoUrl = 'https://github.com/YOUR_GITHUB/pingrad';
 const isGitHubActions = process.env.GITHUB_ACTIONS === 'true';
 const repoName = process.env.GITHUB_REPOSITORY?.split('/')[1] ?? 'pingrad';
 const baseUrl = process.env.DOCUSAURUS_BASE_URL ?? (isGitHubActions ? `/${repoName}/` : '/');
-const faviconPath = 'favicon-pin-grad-v2.ico?v=20260222';
+const faviconPath = 'favicon.ico?v=20260222';
 
 const config: Config = {
   title: 'PIN Grad – The PIN Graduate Network',
