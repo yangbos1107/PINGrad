@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="PIN Grad">
+  <defs>
+    <linearGradient id="g" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#f7fafc"/>
+      <stop offset="100%" stop-color="#e6edf7"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#g)"/>
+  <rect x="70" y="70" width="1060" height="490" rx="24" fill="#ffffff" stroke="#d0d9e4" stroke-width="2"/>
+  <text x="120" y="280" font-family="Arial, sans-serif" font-size="72" font-weight="700" fill="#0d1b2a">PIN Grad</text>
+  <text x="120" y="355" font-family="Arial, sans-serif" font-size="38" fill="#3a4a5d">The PIN Graduate Network</text>
+</svg>
