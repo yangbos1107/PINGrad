@@ -15,6 +15,8 @@
   --pin-muted-text: #8b8b8b;
   --pin-border: rgba(37, 37, 37, 0.08);
   --pin-shadow: rgba(0, 0, 0, 0.08);
+  --pin-interactive-border: rgba(14, 186, 178, 0.35);
+  --pin-active-surface: rgba(11, 141, 135, 0.14);
 
   --ifm-color-primary: #11ded5;
   --ifm-color-primary-dark: #0ebab2;
@@ -46,6 +48,8 @@
   --pin-muted-text: #a8b4b6;
   --pin-border: rgba(233, 239, 239, 0.14);
   --pin-shadow: rgba(0, 0, 0, 0.38);
+  --pin-interactive-border: rgba(94, 226, 220, 0.42);
+  --pin-active-surface: rgba(10, 164, 157, 0.22);
 
   --ifm-color-primary: #0ebab2;
   --ifm-color-primary-dark: #0aa49d;
@@ -150,9 +154,16 @@ body {
 }
 
 .theme-doc-markdown blockquote {
-  border-left: 4px solid var(--pin-primary-teal);
-  background: var(--pin-teal-soft);
-  border-radius: 10px;
+  margin: 1rem 0 1.15rem;
+  padding: 0.78rem 1rem;
+  border: 1px solid var(--pin-interactive-border, var(--pin-border));
+  border-left: 1px solid var(--pin-interactive-border, var(--pin-border));
+  background: var(--pin-active-surface, var(--pin-teal-soft));
+  border-radius: 12px;
+}
+
+.theme-doc-markdown blockquote p {
+  margin: 0;
 }
 
 .theme-doc-markdown table {
@@ -370,7 +381,7 @@ body {
 }
 
 [data-theme='dark'] .theme-doc-markdown blockquote {
-  background: rgba(17, 222, 213, 0.14);
+  background: var(--pin-active-surface);
 }
 
 [data-theme='dark'] .theme-doc-markdown table thead tr {
