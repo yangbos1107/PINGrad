@@ -270,3 +270,30 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+.pin-blank-page {
+  min-height: calc(100vh - var(--ifm-navbar-height));
+  display: grid;
+  place-items: center;
+  padding: 1.25rem;
+}
+
+.pin-blank-placeholder {
+  width: min(680px, 100%);
+  border: 1px dashed #d0d9e6;
+  border-radius: 14px;
+  background: #ffffff;
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+
+.pin-blank-placeholder h1 {
+  margin: 0;
+  font-size: clamp(1.55rem, 2vw, 2rem);
+  color: #162338;
+}
+
+.pin-blank-placeholder p {
+  margin: 0.8rem 0 0;
+  color: #4b5f7c;
+}

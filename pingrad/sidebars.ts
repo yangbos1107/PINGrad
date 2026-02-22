@@ -5,52 +5,7 @@ const sidebars: SidebarsConfig = {
     'intro',
     {
       type: 'category',
-      label: 'DataPoints',
-      link: {
-        type: 'doc',
-        id: 'datapoints/intro'
-      },
-      items: ['datapoints/outcomes', 'datapoints/admission']
-    },
-    {
-      type: 'category',
-      label: '申请跟踪',
-      link: {
-        type: 'doc',
-        id: 'tracking/intro'
-      },
-      items: ['tracking/timeline', 'tracking/checklist']
-    },
-    {
-      type: 'category',
-      label: '资源（Resources）',
-      link: {
-        type: 'doc',
-        id: 'resources/index'
-      },
-      items: ['resources/docs', 'resources/templates']
-    },
-    {
-      type: 'category',
-      label: '项目合集（Projects）',
-      link: {
-        type: 'doc',
-        id: 'projects/index'
-      },
-      items: ['projects/project-list']
-    },
-    {
-      type: 'category',
-      label: '找我 / 加入（Contact / Join）',
-      link: {
-        type: 'doc',
-        id: 'join/index'
-      },
-      items: ['join/contact']
-    },
-    {
-      type: 'category',
-      label: 'PIN 梯度导航',
+      label: '项目难度梯度导航',
       collapsible: false,
       items: [
         {

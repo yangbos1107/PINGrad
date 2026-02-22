@@ -27,15 +27,11 @@ const config: Config = {
 
   i18n: {
     defaultLocale: 'zh-Hans',
-    locales: ['zh-Hans', 'en'],
+    locales: ['zh-Hans'],
     localeConfigs: {
       'zh-Hans': {
         label: '中文',
         htmlLang: 'zh-CN'
-      },
-      en: {
-        label: 'English',
-        htmlLang: 'en-US'
       }
     }
   },
@@ -49,7 +45,7 @@ const config: Config = {
         indexBlog: false,
         indexPages: true,
         docsRouteBasePath: '/docs',
-        language: ['en', 'zh'],
+        language: ['zh'],
         highlightSearchTermsOnTargetPage: true,
         explicitSearchResultPath: true
       }
@@ -87,26 +83,12 @@ const config: Config = {
           position: 'left'
         },
         {
-          type: 'dropdown',
+          to: '/datapoints',
           label: 'DataPoints',
-          position: 'left',
-          items: [
-            {
-              label: 'DataPoints 总览',
-              to: '/docs/datapoints/intro'
-            },
-            {
-              label: '去向数据',
-              to: '/docs/datapoints/outcomes'
-            },
-            {
-              label: '申请数据',
-              to: '/docs/datapoints/admission'
-            }
-          ]
+          position: 'left'
         },
         {
-          to: '/docs/tracking/intro',
+          to: '/tracker',
           label: '申请跟踪',
           position: 'left'
         },
@@ -117,10 +99,6 @@ const config: Config = {
         },
         {
           type: 'search',
-          position: 'right'
-        },
-        {
-          type: 'localeDropdown',
           position: 'right'
         }
       ]
@@ -163,8 +141,8 @@ const config: Config = {
               to: '/docs/join'
             },
             {
-              label: '交流群（占位）',
-              href: 'https://example.com/pin-community'
+              label: 'Discord 交流群',
+              href: 'https://discord.gg/sYRnn3JvWm'
             }
           ]
         },
@@ -173,15 +151,15 @@ const config: Config = {
           items: [
             {
               label: '资源',
-              to: '/docs/resources'
+              to: '/resources'
             },
             {
               label: '项目合集',
               to: '/docs/projects'
             },
             {
-              label: '加入我们',
-              to: '/docs/join/contact'
+              label: 'Contact',
+              to: '/contact'
             }
           ]
         }
