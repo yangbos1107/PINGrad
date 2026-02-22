@@ -73,6 +73,11 @@ const config: Config = {
 
   themeConfig: {
     image: 'img/pin-social-card.svg',
+    colorMode: {
+      defaultMode: 'light',
+      disableSwitch: false,
+      respectPrefersColorScheme: true
+    },
     navbar: {
       title: 'PIN Grad',
       hideOnScroll: false,
@@ -105,7 +110,7 @@ const config: Config = {
     },
     docs: {
       sidebar: {
-        hideable: true,
+        hideable: false,
         autoCollapseCategories: false
       }
     },
