@@ -9,7 +9,7 @@ const repoName = process.env.GITHUB_REPOSITORY?.split('/')[1] ?? 'pingrad';
 const config: Config = {
   title: 'PIN Grad – The PIN Graduate Network',
   tagline: 'Built by PIN students. Focused on outcomes & practical guides.',
-  favicon: 'img/pin-favicon.svg',
+  favicon: 'img/pin-grad.ico',
 
   url: process.env.DOCUSAURUS_URL ?? 'https://example.com',
   baseUrl: process.env.DOCUSAURUS_BASE_URL ?? (isGitHubActions ? `/${repoName}/` : '/'),
@@ -80,6 +80,10 @@ const config: Config = {
     },
     navbar: {
       title: 'PIN Grad',
+      logo: {
+        alt: 'PIN Grad Logo',
+        src: 'img/pin-grad.png'
+      },
       hideOnScroll: false,
       items: [
         {

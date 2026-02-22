@@ -15,7 +15,11 @@ const sidebars: SidebarsConfig = {
             type: 'doc',
             id: 'tiers/s/index'
           },
-          items: ['tiers/s/stanford-university', 'tiers/s/california-institute-of-technology']
+          items: [
+            'tiers/s/stanford-university',
+            'tiers/s/california-institute-of-technology',
+            'tiers/aplus/university-of-california-berkeley'
+          ]
         },
         {
           type: 'category',
@@ -25,13 +29,13 @@ const sidebars: SidebarsConfig = {
             id: 'tiers/aplus/index'
           },
           items: [
-            'tiers/aplus/carnegie-mellon-university',
-            'tiers/aplus/university-of-pennsylvania',
-            'tiers/aplus/columbia-university',
-            'tiers/aplus/university-of-california-berkeley',
             'tiers/aplus/yale-university',
-            'tiers/aplus/johns-hopkins-university',
-            'tiers/aplus/duke-university'
+            'tiers/aplus/carnegie-mellon-university',
+            'tiers/a/university-of-california-los-angeles',
+            'tiers/a/university-of-illinois-urbana-champaign',
+            'tiers/a/georgia-institute-of-technology',
+            'tiers/a/university-of-california-berkeley-meng',
+            'tiers/aplus/cornell-university'
           ]
         },
         {
@@ -42,15 +46,13 @@ const sidebars: SidebarsConfig = {
             id: 'tiers/a/index'
           },
           items: [
-            'tiers/a/university-of-california-los-angeles',
-            'tiers/a/northwestern-university',
-            'tiers/a/northwestern-university-msce',
-            'tiers/a/university-of-illinois-urbana-champaign',
-            'tiers/a/georgia-institute-of-technology',
-            'tiers/a/rice-university',
+            'tiers/aplus/columbia-university',
+            'tiers/aminus/purdue-university-main-campus',
+            'tiers/aminus/university-of-washington',
             'tiers/a/university-of-texas-austin',
-            'tiers/aplus/cornell-university',
-            'tiers/a/university-of-california-berkeley-meng'
+            'tiers/aplus/university-of-pennsylvania',
+            'tiers/aplus/johns-hopkins-university',
+            'tiers/aplus/duke-university'
           ]
         },
         {
@@ -62,12 +64,15 @@ const sidebars: SidebarsConfig = {
           },
           items: [
             'tiers/aminus/university-of-southern-california',
-            'tiers/aminus/university-of-washington',
-            'tiers/aminus/purdue-university-main-campus',
+            'tiers/a/northwestern-university',
+            'tiers/a/northwestern-university-msce',
+            'tiers/a/rice-university',
             'tiers/aminus/university-of-california-davis',
             'tiers/aminus/university-of-wisconsin-madison',
             'tiers/aminus/brown-university',
-            'tiers/aminus/university-of-illinois-urbana-champaign-meng'
+            'tiers/aminus/university-of-illinois-urbana-champaign-meng',
+            'tiers/bplus/the-pennsylvania-state-university',
+            'tiers/bplus/texas-a-and-m-university-college-station'
           ]
         },
         {
@@ -80,10 +85,9 @@ const sidebars: SidebarsConfig = {
           items: [
             'tiers/bplus/new-york-university',
             'tiers/bplus/new-york-university-msce',
+            'tiers/bplus/university-of-washington-pmp',
             'tiers/bplus/washington-university-in-st-louis',
             'tiers/bplus/university-of-maryland-college-park',
-            'tiers/bplus/the-pennsylvania-state-university',
-            'tiers/bplus/texas-a-and-m-university-college-station',
             'tiers/bplus/ohio-state-university',
             'tiers/bplus/university-of-california-santa-barbara'
           ]
@@ -95,7 +99,16 @@ const sidebars: SidebarsConfig = {
             type: 'doc',
             id: 'tiers/b/index'
           },
-          items: ['tiers/b/university-of-california-irvine', 'tiers/b/university-of-minnesota-twin-cities']
+          items: [
+            'tiers/b/university-of-california-irvine',
+            'tiers/b/university-of-minnesota-twin-cities',
+            'tiers/bminus/northeastern-university',
+            'tiers/bminus/rutgers-the-state-university-of-new-jersey',
+            'tiers/bminus/university-of-massachusetts-amherst',
+            'tiers/cplus/university-of-pittsburgh',
+            'tiers/cplus/stony-brook-university-suny',
+            'tiers/cplus/george-washington-university'
+          ]
         },
         {
           type: 'category',
@@ -104,11 +117,7 @@ const sidebars: SidebarsConfig = {
             type: 'doc',
             id: 'tiers/bminus/index'
           },
-          items: [
-            'tiers/bminus/northeastern-university',
-            'tiers/bminus/rutgers-the-state-university-of-new-jersey',
-            'tiers/bminus/university-of-massachusetts-amherst'
-          ]
+          items: []
         },
         {
           type: 'category',
@@ -117,11 +126,7 @@ const sidebars: SidebarsConfig = {
             type: 'doc',
             id: 'tiers/cplus/index'
           },
-          items: [
-            'tiers/cplus/university-of-pittsburgh',
-            'tiers/cplus/stony-brook-university-suny',
-            'tiers/cplus/george-washington-university'
-          ]
+          items: []
         }
       ]
     }
