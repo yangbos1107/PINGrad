@@ -37,9 +37,9 @@ pingrad/
 
 已在 `docusaurus.config.ts` 中配置：
 
-- `editUrl`: `https://github.com/<YOUR_GITHUB>/pingrad/edit/main/`
+- `editUrl`: `https://github.com/yangbos1107/PINGrad/edit/main/pingrad/`
 
-将 `<YOUR_GITHUB>` 替换为你的 GitHub 用户名即可。
+当前默认仓库地址已指向官方仓库 `yangbos1107/PINGrad`。
 
 ## GitHub Pages 部署
 

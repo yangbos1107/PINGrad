@@ -2,9 +2,9 @@ import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
-const githubRepoUrl = 'https://github.com/YOUR_GITHUB/pingrad';
+const githubRepoUrl = 'https://github.com/yangbos1107/PINGrad';
 const isGitHubActions = process.env.GITHUB_ACTIONS === 'true';
-const repoName = process.env.GITHUB_REPOSITORY?.split('/')[1] ?? 'pingrad';
+const repoName = process.env.GITHUB_REPOSITORY?.split('/')[1] ?? 'PINGrad';
 const baseUrl = process.env.DOCUSAURUS_BASE_URL ?? (isGitHubActions ? `/${repoName}/` : '/');
 const faviconPath = 'favicon.ico?v=20260222';
 
@@ -25,8 +25,8 @@ const config: Config = {
   url: process.env.DOCUSAURUS_URL ?? 'https://example.com',
   baseUrl,
 
-  organizationName: 'YOUR_GITHUB',
-  projectName: 'pingrad',
+  organizationName: 'yangbos1107',
+  projectName: 'PINGrad',
   deploymentBranch: 'gh-pages',
 
   onBrokenLinks: 'throw',
@@ -70,7 +70,7 @@ const config: Config = {
         docs: {
           routeBasePath: 'docs',
           sidebarPath: './sidebars.ts',
-          editUrl: `${githubRepoUrl}/edit/main/`,
+          editUrl: `${githubRepoUrl}/edit/main/pingrad/`,
           showLastUpdateAuthor: true,
           showLastUpdateTime: true
         },
