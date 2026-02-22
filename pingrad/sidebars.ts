@@ -72,7 +72,6 @@ const sidebars: SidebarsConfig = {
           items: [
             'tiers/aplus/carnegie-mellon-university',
             'tiers/aplus/university-of-pennsylvania',
-            'tiers/aplus/cornell-university',
             'tiers/aplus/columbia-university',
             'tiers/aplus/university-of-california-berkeley',
             'tiers/aplus/yale-university',
@@ -90,10 +89,13 @@ const sidebars: SidebarsConfig = {
           items: [
             'tiers/a/university-of-california-los-angeles',
             'tiers/a/northwestern-university',
+            'tiers/a/northwestern-university-msce',
             'tiers/a/university-of-illinois-urbana-champaign',
             'tiers/a/georgia-institute-of-technology',
             'tiers/a/rice-university',
-            'tiers/a/university-of-texas-austin'
+            'tiers/a/university-of-texas-austin',
+            'tiers/aplus/cornell-university',
+            'tiers/a/university-of-california-berkeley-meng'
           ]
         },
         {
@@ -109,7 +111,8 @@ const sidebars: SidebarsConfig = {
             'tiers/aminus/purdue-university-main-campus',
             'tiers/aminus/university-of-california-davis',
             'tiers/aminus/university-of-wisconsin-madison',
-            'tiers/aminus/brown-university'
+            'tiers/aminus/brown-university',
+            'tiers/aminus/university-of-illinois-urbana-champaign-meng'
           ]
         },
         {
@@ -121,6 +124,7 @@ const sidebars: SidebarsConfig = {
           },
           items: [
             'tiers/bplus/new-york-university',
+            'tiers/bplus/new-york-university-msce',
             'tiers/bplus/washington-university-in-st-louis',
             'tiers/bplus/university-of-maryland-college-park',
             'tiers/bplus/the-pennsylvania-state-university',
