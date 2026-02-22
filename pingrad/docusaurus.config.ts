@@ -5,14 +5,25 @@ import type * as Preset from '@docusaurus/preset-classic';
 const githubRepoUrl = 'https://github.com/YOUR_GITHUB/pingrad';
 const isGitHubActions = process.env.GITHUB_ACTIONS === 'true';
 const repoName = process.env.GITHUB_REPOSITORY?.split('/')[1] ?? 'pingrad';
+const baseUrl = process.env.DOCUSAURUS_BASE_URL ?? (isGitHubActions ? `/${repoName}/` : '/');
+const faviconPath = 'favicon-pin-grad-v2.ico?v=20260222';
 
 const config: Config = {
   title: 'PIN Grad – The PIN Graduate Network',
   tagline: 'Built by PIN students. Focused on outcomes & practical guides.',
-  favicon: 'img/pin-grad.ico',
+  favicon: faviconPath,
+  headTags: [
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'shortcut icon',
+        href: `${baseUrl}${faviconPath}`
+      }
+    }
+  ],
 
   url: process.env.DOCUSAURUS_URL ?? 'https://example.com',
-  baseUrl: process.env.DOCUSAURUS_BASE_URL ?? (isGitHubActions ? `/${repoName}/` : '/'),
+  baseUrl,
 
   organizationName: 'YOUR_GITHUB',
   projectName: 'pingrad',
