@@ -2,79 +2,39 @@ import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
 
 type DifficultyKey = 's' | 'aplus' | 'a' | 'aminus' | 'bplus' | 'b' | 'bminus' | 'cplus';
 
-const difficultyBuckets = (itemsByTier: Partial<Record<DifficultyKey, string[]>>) => [
-  {
-    type: 'category' as const,
-    label: 'S',
-    link: {
-      type: 'doc' as const,
-      id: 'tiers/s/index'
-    },
-    items: itemsByTier.s ?? []
-  },
-  {
-    type: 'category' as const,
-    label: 'A+',
-    link: {
-      type: 'doc' as const,
-      id: 'tiers/aplus/index'
-    },
-    items: itemsByTier.aplus ?? []
-  },
-  {
-    type: 'category' as const,
-    label: 'A',
-    link: {
-      type: 'doc' as const,
-      id: 'tiers/a/index'
-    },
-    items: itemsByTier.a ?? []
-  },
-  {
-    type: 'category' as const,
-    label: 'A-',
-    link: {
-      type: 'doc' as const,
-      id: 'tiers/aminus/index'
-    },
-    items: itemsByTier.aminus ?? []
-  },
-  {
-    type: 'category' as const,
-    label: 'B+',
-    link: {
-      type: 'doc' as const,
-      id: 'tiers/bplus/index'
-    },
-    items: itemsByTier.bplus ?? []
-  },
-  {
-    type: 'category' as const,
-    label: 'B',
-    link: {
-      type: 'doc' as const,
-      id: 'tiers/b/index'
-    },
-    items: itemsByTier.b ?? []
-  },
-  {
-    type: 'category' as const,
-    label: 'B-',
-    link: {
-      type: 'doc' as const,
-      id: 'tiers/bminus/index'
-    },
-    items: itemsByTier.bminus ?? []
-  },
-  {
-    type: 'category' as const,
-    label: 'C+',
-    link: {
-      type: 'doc' as const,
-      id: 'tiers/cplus/index'
-    },
-    items: itemsByTier.cplus ?? []
+const difficultyBucket = (label: string, linkId: string, items: string[]) => {
+  if (items.length > 0) {
+    return {
+      type: 'category' as const,
+      label,
+      collapsible: true,
+      collapsed: true,
+      items
+    };
   }
+
+  return {
+    type: 'category' as const,
+    label,
+    collapsible: true,
+    collapsed: true,
+    link: {
+      type: 'doc' as const,
+      id: linkId
+    },
+    items: []
+  };
+};
+
+const difficultyBuckets = (itemsByTier: Partial<Record<DifficultyKey, string[]>>) => [
+  difficultyBucket('S', 'tiers/s/index', itemsByTier.s ?? []),
+  difficultyBucket('A+', 'tiers/aplus/index', itemsByTier.aplus ?? []),
+  difficultyBucket('A', 'tiers/a/index', itemsByTier.a ?? []),
+  difficultyBucket('A-', 'tiers/aminus/index', itemsByTier.aminus ?? []),
+  difficultyBucket('B+', 'tiers/bplus/index', itemsByTier.bplus ?? []),
+  difficultyBucket('B', 'tiers/b/index', itemsByTier.b ?? []),
+  difficultyBucket('B-', 'tiers/bminus/index', itemsByTier.bminus ?? []),
+  difficultyBucket('C+', 'tiers/cplus/index', itemsByTier.cplus ?? [])
 ];
 
 const sidebars: SidebarsConfig = {
@@ -90,11 +50,13 @@ const sidebars: SidebarsConfig = {
           label: '美国',
           items: difficultyBuckets({
             s: [
+              'tiers/us/s/massachusetts-institute-of-technology',
               'tiers/us/s/stanford-university',
               'tiers/us/s/california-institute-of-technology',
               'tiers/us/s/university-of-california-berkeley'
             ],
             aplus: [
+              'tiers/us/aplus/princeton-university',
               'tiers/us/aplus/yale-university',
               'tiers/us/aplus/carnegie-mellon-university',
               'tiers/us/aplus/university-of-california-los-angeles',
@@ -104,6 +66,7 @@ const sidebars: SidebarsConfig = {
               'tiers/us/aplus/cornell-university'
             ],
             a: [
+              'tiers/us/a/university-of-michigan-ann-arbor',
               'tiers/us/a/columbia-university',
               'tiers/us/a/purdue-university-main-campus',
               'tiers/us/a/university-of-washington',
@@ -113,6 +76,7 @@ const sidebars: SidebarsConfig = {
               'tiers/us/a/duke-university'
             ],
             aminus: [
+              'tiers/us/aminus/harvard-university',
               'tiers/us/aminus/university-of-southern-california',
               'tiers/us/aminus/northwestern-university',
               'tiers/us/aminus/northwestern-university-msce',
@@ -149,7 +113,32 @@ const sidebars: SidebarsConfig = {
         {
           type: 'category',
           label: '英国',
-          items: difficultyBuckets({})
+          items: difficultyBuckets({
+            s: [
+              'tiers/uk/s/university-of-cambridge',
+              'tiers/uk/s/university-of-oxford',
+              'tiers/uk/s/imperial-college-london'
+            ],
+            aplus: [
+              'tiers/uk/aplus/university-college-london',
+              'tiers/uk/aplus/university-of-manchester'
+            ],
+            a: [
+              'tiers/uk/a/university-of-edinburgh',
+              'tiers/uk/a/university-of-southampton'
+            ],
+            aminus: [
+              'tiers/uk/aminus/university-of-warwick',
+              'tiers/uk/aminus/university-of-glasgow'
+            ],
+            bplus: [
+              'tiers/uk/bplus/university-of-nottingham',
+              'tiers/uk/bplus/university-of-leeds',
+              'tiers/uk/bplus/university-of-sheffield',
+              'tiers/uk/bplus/university-of-birmingham',
+              'tiers/uk/bplus/queen-mary-university-of-london'
+            ]
+          })
         },
         {
           type: 'category',
