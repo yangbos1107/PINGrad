@@ -376,6 +376,115 @@ body {
   color: var(--pin-muted-text);
 }
 
+.pin-submit-page {
+  min-height: calc(100vh - var(--ifm-navbar-height));
+  padding: 1.6rem 1rem 2rem;
+}
+
+.pin-submit-card {
+  width: min(900px, 100%);
+  margin: 0 auto;
+  border: 1px solid var(--pin-border);
+  border-radius: 16px;
+  background: var(--pin-surface);
+  padding: 1.4rem 1.2rem 1.6rem;
+  box-shadow: 0 12px 28px var(--pin-shadow);
+}
+
+.pin-submit-header h1 {
+  margin: 0;
+}
+
+.pin-submit-header p {
+  margin: 0.5rem 0 0;
+  color: var(--pin-muted-text);
+}
+
+.pin-submit-form {
+  margin-top: 1.2rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.9rem;
+}
+
+.pin-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.pin-form-field span {
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+.pin-form-field input,
+.pin-form-field select,
+.pin-form-field textarea {
+  border: 1px solid var(--pin-border);
+  border-radius: 10px;
+  background: var(--pin-surface);
+  color: var(--pin-text);
+  padding: 0.6rem 0.72rem;
+  font: inherit;
+}
+
+.pin-form-field input:focus,
+.pin-form-field select:focus,
+.pin-form-field textarea:focus {
+  outline: none;
+  border-color: var(--pin-interactive-border);
+  box-shadow: 0 0 0 2px rgba(17, 222, 213, 0.16);
+}
+
+.pin-form-field textarea {
+  resize: vertical;
+}
+
+.pin-form-field--full {
+  grid-column: 1 / -1;
+}
+
+.pin-form-hint {
+  margin: 0.3rem 0 0;
+  font-size: 0.86rem;
+  color: var(--pin-muted-text);
+}
+
+.pin-form-feedback {
+  margin: 0;
+  grid-column: 1 / -1;
+  border-radius: 10px;
+  padding: 0.6rem 0.72rem;
+  font-size: 0.92rem;
+}
+
+.pin-form-feedback--error {
+  border: 1px solid rgba(208, 43, 43, 0.28);
+  background: rgba(208, 43, 43, 0.12);
+}
+
+.pin-form-feedback--success {
+  border: 1px solid rgba(11, 141, 135, 0.26);
+  background: rgba(11, 141, 135, 0.12);
+}
+
+.pin-submit-actions {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: flex-start;
+}
+
+@media (max-width: 768px) {
+  .pin-submit-card {
+    padding: 1.1rem 0.9rem 1.25rem;
+  }
+
+  .pin-submit-form {
+    grid-template-columns: 1fr;
+  }
+}
+
 [data-theme='dark'] .navbar {
   box-shadow: 0 1px 0 rgba(0, 0, 0, 0.25);
 }

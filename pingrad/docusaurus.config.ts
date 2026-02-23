@@ -8,6 +8,8 @@ const baseUrl = process.env.DOCUSAURUS_BASE_URL ?? '/';
 const favicon32Path = 'favicon-32x32.png?v=20260223';
 const favicon16Path = 'favicon-16x16.png?v=20260223';
 const appleTouchIconPath = 'apple-touch-icon.png?v=20260223';
+// TODO: set TURNSTILE_SITE_KEY
+const turnstileSiteKey = process.env.TURNSTILE_SITE_KEY ?? 'YOUR_TURNSTILE_SITE_KEY';
 
 const config: Config = {
   title: 'PIN Grad – The PIN Graduate Network',
@@ -35,6 +37,9 @@ const config: Config = {
 
   url: siteUrl,
   baseUrl,
+  customFields: {
+    turnstileSiteKey: '0x4AAAAAACg_m2RmfRjOjQBX'
+  },
 
   organizationName: 'yangbos1107',
   projectName: 'PINGrad',
@@ -116,6 +121,11 @@ const config: Config = {
         {
           to: '/docs/datapoints',
           label: 'DataPoints',
+          position: 'left'
+        },
+        {
+          to: '/submit-dp',
+          label: 'Submit DP',
           position: 'left'
         },
         {
