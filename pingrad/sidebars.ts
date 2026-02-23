@@ -1,18 +1,9 @@
 import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
 
 type DifficultyKey = 's' | 'aplus' | 'a' | 'aminus' | 'bplus' | 'b' | 'bminus' | 'cplus';
+type RegionKey = 'us' | 'uk' | 'hk' | 'sg' | 'au';
 
-const difficultyBucket = (label: string, linkId: string, items: string[]) => {
-  if (items.length > 0) {
-    return {
-      type: 'category' as const,
-      label,
-      collapsible: true,
-      collapsed: true,
-      items
-    };
-  }
-
+const difficultyBucket = (region: RegionKey, label: string, tier: DifficultyKey, items: string[]) => {
   return {
     type: 'category' as const,
     label,
@@ -20,21 +11,21 @@ const difficultyBucket = (label: string, linkId: string, items: string[]) => {
     collapsed: true,
     link: {
       type: 'doc' as const,
-      id: linkId
+      id: `tiers/${region}/${tier}/index`
     },
-    items: []
+    items
   };
 };
 
-const difficultyBuckets = (itemsByTier: Partial<Record<DifficultyKey, string[]>>) => [
-  difficultyBucket('S', 'tiers/s/index', itemsByTier.s ?? []),
-  difficultyBucket('A+', 'tiers/aplus/index', itemsByTier.aplus ?? []),
-  difficultyBucket('A', 'tiers/a/index', itemsByTier.a ?? []),
-  difficultyBucket('A-', 'tiers/aminus/index', itemsByTier.aminus ?? []),
-  difficultyBucket('B+', 'tiers/bplus/index', itemsByTier.bplus ?? []),
-  difficultyBucket('B', 'tiers/b/index', itemsByTier.b ?? []),
-  difficultyBucket('B-', 'tiers/bminus/index', itemsByTier.bminus ?? []),
-  difficultyBucket('C+', 'tiers/cplus/index', itemsByTier.cplus ?? [])
+const difficultyBuckets = (region: RegionKey, itemsByTier: Partial<Record<DifficultyKey, string[]>>) => [
+  difficultyBucket(region, 'S', 's', itemsByTier.s ?? []),
+  difficultyBucket(region, 'A+', 'aplus', itemsByTier.aplus ?? []),
+  difficultyBucket(region, 'A', 'a', itemsByTier.a ?? []),
+  difficultyBucket(region, 'A-', 'aminus', itemsByTier.aminus ?? []),
+  difficultyBucket(region, 'B+', 'bplus', itemsByTier.bplus ?? []),
+  difficultyBucket(region, 'B', 'b', itemsByTier.b ?? []),
+  difficultyBucket(region, 'B-', 'bminus', itemsByTier.bminus ?? []),
+  difficultyBucket(region, 'C+', 'cplus', itemsByTier.cplus ?? [])
 ];
 
 const sidebars: SidebarsConfig = {
@@ -48,7 +39,7 @@ const sidebars: SidebarsConfig = {
         {
           type: 'category',
           label: '美国',
-          items: difficultyBuckets({
+          items: difficultyBuckets('us', {
             s: [
               'tiers/us/s/massachusetts-institute-of-technology',
               'tiers/us/s/stanford-university',
@@ -113,7 +104,7 @@ const sidebars: SidebarsConfig = {
         {
           type: 'category',
           label: '英国',
-          items: difficultyBuckets({
+          items: difficultyBuckets('uk', {
             s: [
               'tiers/uk/s/university-of-cambridge',
               'tiers/uk/s/university-of-oxford',
@@ -143,17 +134,47 @@ const sidebars: SidebarsConfig = {
         {
           type: 'category',
           label: '香港',
-          items: difficultyBuckets({})
+          items: difficultyBuckets('hk', {
+            s: [
+              'tiers/hk/s/hong-kong-university-of-science-and-technology'
+            ],
+            aplus: [
+              'tiers/hk/aplus/university-of-hong-kong'
+            ],
+            a: [
+              'tiers/hk/a/chinese-university-of-hong-kong'
+            ],
+            aminus: [
+              'tiers/hk/aminus/city-university-of-hong-kong',
+              'tiers/hk/aminus/hong-kong-polytechnic-university'
+            ]
+          })
         },
         {
           type: 'category',
           label: '新加坡',
-          items: difficultyBuckets({})
+          items: difficultyBuckets('sg', {
+            s: [
+              'tiers/sg/s/national-university-of-singapore',
+              'tiers/sg/s/nanyang-technological-university'
+            ]
+          })
         },
         {
           type: 'category',
           label: '澳洲',
-          items: difficultyBuckets({})
+          items: difficultyBuckets('au', {
+            b: [
+              'tiers/au/b/university-of-new-south-wales'
+            ],
+            bminus: [
+              'tiers/au/bminus/university-of-melbourne',
+              'tiers/au/bminus/university-of-sydney'
+            ],
+            cplus: [
+              'tiers/au/cplus/australian-national-university'
+            ]
+          })
         }
       ]
     }
