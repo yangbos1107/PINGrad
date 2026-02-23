@@ -18,7 +18,7 @@ const sidebars: SidebarsConfig = {
           items: [
             'tiers/s/stanford-university',
             'tiers/s/california-institute-of-technology',
-            'tiers/aplus/university-of-california-berkeley'
+            'tiers/s/university-of-california-berkeley'
           ]
         },
         {
@@ -31,10 +31,10 @@ const sidebars: SidebarsConfig = {
           items: [
             'tiers/aplus/yale-university',
             'tiers/aplus/carnegie-mellon-university',
-            'tiers/a/university-of-california-los-angeles',
-            'tiers/a/university-of-illinois-urbana-champaign',
-            'tiers/a/georgia-institute-of-technology',
-            'tiers/a/university-of-california-berkeley-meng',
+            'tiers/aplus/university-of-california-los-angeles',
+            'tiers/aplus/university-of-illinois-urbana-champaign',
+            'tiers/aplus/georgia-institute-of-technology',
+            'tiers/aplus/university-of-california-berkeley-meng',
             'tiers/aplus/cornell-university'
           ]
         },
@@ -46,13 +46,13 @@ const sidebars: SidebarsConfig = {
             id: 'tiers/a/index'
           },
           items: [
-            'tiers/aplus/columbia-university',
-            'tiers/aminus/purdue-university-main-campus',
-            'tiers/aminus/university-of-washington',
+            'tiers/a/columbia-university',
+            'tiers/a/purdue-university-main-campus',
+            'tiers/a/university-of-washington',
             'tiers/a/university-of-texas-austin',
-            'tiers/aplus/university-of-pennsylvania',
-            'tiers/aplus/johns-hopkins-university',
-            'tiers/aplus/duke-university'
+            'tiers/a/university-of-pennsylvania',
+            'tiers/a/johns-hopkins-university',
+            'tiers/a/duke-university'
           ]
         },
         {
@@ -64,15 +64,15 @@ const sidebars: SidebarsConfig = {
           },
           items: [
             'tiers/aminus/university-of-southern-california',
-            'tiers/a/northwestern-university',
-            'tiers/a/northwestern-university-msce',
-            'tiers/a/rice-university',
+            'tiers/aminus/northwestern-university',
+            'tiers/aminus/northwestern-university-msce',
+            'tiers/aminus/rice-university',
             'tiers/aminus/university-of-california-davis',
             'tiers/aminus/university-of-wisconsin-madison',
             'tiers/aminus/brown-university',
             'tiers/aminus/university-of-illinois-urbana-champaign-meng',
-            'tiers/bplus/the-pennsylvania-state-university',
-            'tiers/bplus/texas-a-and-m-university-college-station'
+            'tiers/aminus/the-pennsylvania-state-university',
+            'tiers/aminus/texas-a-and-m-university-college-station'
           ]
         },
         {
@@ -89,7 +89,8 @@ const sidebars: SidebarsConfig = {
             'tiers/bplus/washington-university-in-st-louis',
             'tiers/bplus/university-of-maryland-college-park',
             'tiers/bplus/ohio-state-university',
-            'tiers/bplus/university-of-california-santa-barbara'
+            'tiers/bplus/university-of-california-santa-barbara',
+            'tiers/bplus/university-of-southern-california'
           ]
         },
         {
@@ -102,12 +103,12 @@ const sidebars: SidebarsConfig = {
           items: [
             'tiers/b/university-of-california-irvine',
             'tiers/b/university-of-minnesota-twin-cities',
-            'tiers/bminus/northeastern-university',
-            'tiers/bminus/rutgers-the-state-university-of-new-jersey',
-            'tiers/bminus/university-of-massachusetts-amherst',
-            'tiers/cplus/university-of-pittsburgh',
-            'tiers/cplus/stony-brook-university-suny',
-            'tiers/cplus/george-washington-university'
+            'tiers/b/northeastern-university',
+            'tiers/b/rutgers-the-state-university-of-new-jersey',
+            'tiers/b/university-of-massachusetts-amherst',
+            'tiers/b/university-of-pittsburgh',
+            'tiers/b/stony-brook-university-suny',
+            'tiers/b/george-washington-university'
           ]
         },
         {
