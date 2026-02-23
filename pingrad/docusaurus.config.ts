@@ -103,12 +103,12 @@ const config: Config = {
           position: 'left'
         },
         {
-          to: '/datapoints',
+          to: '/docs/datapoints',
           label: 'DataPoints',
           position: 'left'
         },
         {
-          to: '/tracker',
+          to: '/docs/tracker',
           label: '申请跟踪',
           position: 'left'
         },
@@ -141,11 +141,11 @@ const config: Config = {
             },
             {
               label: 'DataPoints',
-              to: '/docs/datapoints/intro'
+              to: '/docs/datapoints'
             },
             {
               label: '申请跟踪',
-              to: '/docs/tracking/intro'
+              to: '/docs/tracker'
             }
           ]
         },
@@ -171,7 +171,7 @@ const config: Config = {
           items: [
             {
               label: '资源',
-              to: '/resources'
+              to: '/docs/resources'
             },
             {
               label: '项目合集',
@@ -179,7 +179,7 @@ const config: Config = {
             },
             {
               label: 'Contact',
-              to: '/contact'
+              to: '/docs/join/contact'
             }
           ]
         }

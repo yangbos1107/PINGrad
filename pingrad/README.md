@@ -1,12 +1,12 @@
 # PIN Grad – The PIN Graduate Network
 
-基于 Docusaurus (TypeScript) 的 PIN 项目文档站，默认中文，支持中英切换，包含梯度侧边栏导航、DataPoints 结构、申请跟踪流程、本地搜索与 GitHub 编辑入口。
+基于 Docusaurus (TypeScript) 的 PIN 项目文档站，默认中文，包含梯度侧边栏导航、DataPoints 入口、申请跟踪入口、本地搜索与 GitHub 编辑入口。
 
 ## 技术栈
 
 - Docusaurus classic (TypeScript)
 - Node.js >= 18（推荐 20）
-- i18n: `zh-Hans` (default) + `en`
+- i18n: `zh-Hans` (default)
 - Local search: `@easyops-cn/docusaurus-search-local`
 
 ## 本地启动
@@ -29,7 +29,6 @@ pingrad/
     css/custom.css
     pages/index.tsx
   docs/
-  i18n/en/docusaurus-plugin-content-docs/current/
   .github/workflows/deploy.yml
 ```
 
