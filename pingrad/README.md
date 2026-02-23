@@ -25,11 +25,20 @@ npm run start
 - 提交接口：`POST https://api.pingrad.app/submit-dp`
 - 该页面只会调用 Worker API，不会在前端存储任何 Teable token。
 
-Turnstile site key 通过 `docusaurus.config.ts` 的 `customFields.turnstileSiteKey` 提供。你可以使用环境变量或直接替换占位值：
+Turnstile site key 当前通过 `docusaurus.config.ts` 的 `customFields.turnstileSiteKey` 提供（仓库里是固定值）：
 
 ```ts
-// TODO: set TURNSTILE_SITE_KEY
-const turnstileSiteKey = process.env.TURNSTILE_SITE_KEY ?? 'YOUR_TURNSTILE_SITE_KEY';
+customFields: {
+  turnstileSiteKey: '0x4AAAAAACg_m2RmfRjOjQBX'
+}
+```
+
+如果你希望改成环境变量驱动，可将其改为：
+
+```ts
+customFields: {
+  turnstileSiteKey: process.env.TURNSTILE_SITE_KEY ?? ''
+}
 ```
 
 Worker 对 CORS 的 `Origin` 有校验，生产环境请确保站点域名是：

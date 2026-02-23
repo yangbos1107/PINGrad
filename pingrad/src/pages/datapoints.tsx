@@ -46,6 +46,8 @@ export default function DatapointsPage(): React.JSX.Element {
             title="PIN Grad DataPoints"
             width="100%"
             loading="lazy"
+            sandbox="allow-scripts allow-same-origin allow-forms"
+            referrerPolicy="strict-origin-when-cross-origin"
           />
         </section>
       </main>
