@@ -173,7 +173,7 @@ const config: Config = {
             },
             {
               label: 'Discord 交流群',
-              href: 'https://discord.gg/sYRnn3JvWm'
+              href: 'https://discord.gg/wJaMwqFRtu'
             }
           ]
         },
