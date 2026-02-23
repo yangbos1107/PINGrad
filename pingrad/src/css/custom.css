@@ -376,6 +376,17 @@ body {
   color: var(--pin-muted-text);
 }
 
+.pin-contact-links {
+  width: fit-content;
+  margin: 1rem auto 0;
+  padding-left: 1.15rem;
+  text-align: left;
+}
+
+.pin-contact-links li + li {
+  margin-top: 0.38rem;
+}
+
 .pin-submit-page {
   min-height: calc(100vh - var(--ifm-navbar-height));
   padding: 1.6rem 1rem 2rem;

@@ -129,7 +129,7 @@ const config: Config = {
           position: 'left'
         },
         {
-          to: '/docs/tracker',
+          to: '/tracker',
           label: '申请跟踪',
           position: 'left'
         },
@@ -166,7 +166,7 @@ const config: Config = {
             },
             {
               label: '申请跟踪',
-              to: '/docs/tracker'
+              to: '/tracker'
             }
           ]
         },
@@ -179,7 +179,7 @@ const config: Config = {
             },
             {
               label: '贡献指南',
-              to: '/docs/join'
+              to: '/join'
             },
             {
               label: 'Discord 交流群',
@@ -192,15 +192,15 @@ const config: Config = {
           items: [
             {
               label: '资源',
-              to: '/docs/resources'
+              to: '/resources'
             },
             {
               label: '项目合集',
-              to: '/docs/projects'
+              to: '/projects'
             },
             {
               label: 'Contact',
-              to: '/docs/join/contact'
+              to: '/contact'
             }
           ]
         }
