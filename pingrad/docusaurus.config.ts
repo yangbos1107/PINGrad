@@ -5,18 +5,30 @@ import type * as Preset from '@docusaurus/preset-classic';
 const githubRepoUrl = 'https://github.com/yangbos1107/PINGrad';
 const siteUrl = process.env.DOCUSAURUS_URL ?? 'https://pingrad.app';
 const baseUrl = process.env.DOCUSAURUS_BASE_URL ?? '/';
-const faviconPath = 'favicon.ico?v=20260222';
+const favicon32Path = 'favicon-32x32.png?v=20260223';
+const favicon16Path = 'favicon-16x16.png?v=20260223';
+const appleTouchIconPath = 'apple-touch-icon.png?v=20260223';
 
 const config: Config = {
   title: 'PIN Grad – The PIN Graduate Network',
   tagline: 'Built by PIN students. Focused on outcomes & practical guides.',
-  favicon: faviconPath,
+  favicon: favicon32Path,
   headTags: [
     {
       tagName: 'link',
       attributes: {
-        rel: 'shortcut icon',
-        href: `${baseUrl}${faviconPath}`
+        rel: 'icon',
+        type: 'image/png',
+        sizes: '16x16',
+        href: `${baseUrl}${favicon16Path}`
+      }
+    },
+    {
+      tagName: 'link',
+      attributes: {
+        rel: 'apple-touch-icon',
+        sizes: '180x180',
+        href: `${baseUrl}${appleTouchIconPath}`
       }
     }
   ],
