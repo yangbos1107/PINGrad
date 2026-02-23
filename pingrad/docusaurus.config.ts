@@ -3,9 +3,8 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const githubRepoUrl = 'https://github.com/yangbos1107/PINGrad';
-const isGitHubActions = process.env.GITHUB_ACTIONS === 'true';
-const repoName = process.env.GITHUB_REPOSITORY?.split('/')[1] ?? 'PINGrad';
-const baseUrl = process.env.DOCUSAURUS_BASE_URL ?? (isGitHubActions ? `/${repoName}/` : '/');
+const siteUrl = process.env.DOCUSAURUS_URL ?? 'https://pingrad.app';
+const baseUrl = process.env.DOCUSAURUS_BASE_URL ?? '/';
 const faviconPath = 'favicon.ico?v=20260222';
 
 const config: Config = {
@@ -22,7 +21,7 @@ const config: Config = {
     }
   ],
 
-  url: process.env.DOCUSAURUS_URL ?? 'https://example.com',
+  url: siteUrl,
   baseUrl,
 
   organizationName: 'yangbos1107',
