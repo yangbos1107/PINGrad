@@ -67,7 +67,7 @@ const config: Config = {
         indexBlog: false,
         indexPages: true,
         docsRouteBasePath: '/docs',
-        language: ['zh'],
+        language: ['en', 'zh'],
         highlightSearchTermsOnTargetPage: true,
         explicitSearchResultPath: true
       }
