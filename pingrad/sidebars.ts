@@ -39,6 +39,10 @@ const sidebars: SidebarsConfig = {
         {
           type: 'category',
           label: '美国',
+          link: {
+            type: 'doc',
+            id: 'tiers/us/index'
+          },
           items: difficultyBuckets('us', {
             s: [
               'tiers/us/s/massachusetts-institute-of-technology',
@@ -104,74 +108,92 @@ const sidebars: SidebarsConfig = {
         {
           type: 'category',
           label: '英国',
+          link: {
+            type: 'doc',
+            id: 'tiers/uk/index'
+          },
           items: difficultyBuckets('uk', {
             s: [
               'tiers/uk/s/university-of-cambridge',
               'tiers/uk/s/university-of-oxford',
-              'tiers/uk/s/imperial-college-london'
-            ],
-            aplus: [
-              'tiers/uk/aplus/university-college-london',
-              'tiers/uk/aplus/university-of-manchester'
             ],
             a: [
-              'tiers/uk/a/university-of-edinburgh',
-              'tiers/uk/a/university-of-southampton'
+              'tiers/uk/a/imperial-college-london'
             ],
             aminus: [
-              'tiers/uk/aminus/university-of-warwick',
-              'tiers/uk/aminus/university-of-glasgow'
+              'tiers/uk/aminus/university-college-london',
+              'tiers/uk/aminus/university-of-edinburgh'
             ],
             bplus: [
-              'tiers/uk/bplus/university-of-nottingham',
-              'tiers/uk/bplus/university-of-leeds',
-              'tiers/uk/bplus/university-of-sheffield',
-              'tiers/uk/bplus/university-of-birmingham',
-              'tiers/uk/bplus/queen-mary-university-of-london'
+              'tiers/uk/bplus/university-of-warwick',
+              'tiers/uk/bplus/university-of-manchester',
+              'tiers/uk/bplus/university-of-southampton'
+            ],
+            b: [
+              'tiers/uk/b/university-of-glasgow',
+              'tiers/uk/b/university-of-nottingham',
+              'tiers/uk/b/university-of-leeds',
+              'tiers/uk/b/university-of-birmingham',
+            ],
+            bminus: [
+              'tiers/uk/bminus/university-of-sheffield',
+              'tiers/uk/bminus/queen-mary-university-of-london'
             ]
           })
         },
         {
           type: 'category',
           label: '香港',
+          link: {
+            type: 'doc',
+            id: 'tiers/hk/index'
+          },
           items: difficultyBuckets('hk', {
-            s: [
-              'tiers/hk/s/hong-kong-university-of-science-and-technology'
-            ],
-            aplus: [
-              'tiers/hk/aplus/university-of-hong-kong'
-            ],
             a: [
-              'tiers/hk/a/chinese-university-of-hong-kong'
+              'tiers/hk/a/hong-kong-university-of-science-and-technology'
             ],
             aminus: [
-              'tiers/hk/aminus/city-university-of-hong-kong',
-              'tiers/hk/aminus/hong-kong-polytechnic-university'
+              'tiers/hk/aminus/university-of-hong-kong'
+            ],
+            bplus: [
+              'tiers/hk/bplus/chinese-university-of-hong-kong'
+            ],
+            b: [
+              'tiers/hk/b/city-university-of-hong-kong',
+              'tiers/hk/b/hong-kong-polytechnic-university'
             ]
           })
         },
         {
           type: 'category',
           label: '新加坡',
+          link: {
+            type: 'doc',
+            id: 'tiers/sg/index'
+          },
           items: difficultyBuckets('sg', {
-            s: [
-              'tiers/sg/s/national-university-of-singapore',
-              'tiers/sg/s/nanyang-technological-university'
+            a: [
+              'tiers/sg/a/national-university-of-singapore'
+            ],
+            aminus: [
+              'tiers/sg/aminus/nanyang-technological-university'
             ]
           })
         },
         {
           type: 'category',
           label: '澳洲',
+          link: {
+            type: 'doc',
+            id: 'tiers/au/index'
+          },
           items: difficultyBuckets('au', {
-            b: [
-              'tiers/au/b/university-of-new-south-wales'
-            ],
             bminus: [
-              'tiers/au/bminus/university-of-melbourne',
-              'tiers/au/bminus/university-of-sydney'
+              'tiers/au/bminus/university-of-new-south-wales'
             ],
             cplus: [
+              'tiers/au/cplus/university-of-melbourne',
+              'tiers/au/cplus/university-of-sydney',
               'tiers/au/cplus/australian-national-university'
             ]
           })
