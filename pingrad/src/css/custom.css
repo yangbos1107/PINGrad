@@ -391,6 +391,29 @@ body {
   box-shadow: 0 12px 28px var(--pin-shadow);
 }
 
+.pin-submit-card--wide {
+  width: 100%;
+  max-width: none;
+}
+
+.pin-datapoints-embed {
+  display: block;
+  width: 100%;
+  height: calc(100vh - var(--ifm-navbar-height) - 220px);
+  min-height: 700px;
+  border: 0;
+  border-radius: 12px;
+  background: var(--pin-surface);
+}
+
+.pin-submit-card--light .pin-datapoints-embed {
+  background: #ffffff;
+}
+
+.pin-submit-card--dark .pin-datapoints-embed {
+  background: #15191a;
+}
+
 .pin-submit-header h1 {
   margin: 0;
 }
@@ -482,6 +505,11 @@ body {
 
   .pin-submit-form {
     grid-template-columns: 1fr;
+  }
+
+  .pin-datapoints-embed {
+    height: calc(100vh - var(--ifm-navbar-height) - 180px);
+    min-height: 560px;
   }
 }
 

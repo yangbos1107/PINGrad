@@ -119,7 +119,7 @@ const config: Config = {
           position: 'left'
         },
         {
-          to: '/docs/datapoints',
+          to: '/datapoints',
           label: 'DataPoints',
           position: 'left'
         },
@@ -162,7 +162,7 @@ const config: Config = {
             },
             {
               label: 'DataPoints',
-              to: '/docs/datapoints'
+              to: '/datapoints'
             },
             {
               label: '申请跟踪',
