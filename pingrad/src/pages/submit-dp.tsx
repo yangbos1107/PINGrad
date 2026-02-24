@@ -13,6 +13,7 @@ const PROGRAM_OPTIONS = ['ECE', 'EE', 'CE', 'EEE', 'Other'] as const;
 const TERM_OPTIONS = ['Fall', 'Spring', 'Summer', 'Other'] as const;
 const DEGREE_OPTIONS = ['MS', 'MEng', 'PhD', 'Other'] as const;
 const RESULT_OPTIONS = ['Offer', 'Reject', 'Waitlist', 'Other'] as const;
+const GPA_SCALE_OPTIONS = ['5.0 NJUPT', '5.0 NJUPT + 4.0 PSU'] as const;
 
 type TurnstileWidgetId = string | number;
 
@@ -30,6 +31,10 @@ type TurnstileApi = {
 };
 
 type FormState = {
+  applicantName: string;
+  gpaScale: string;
+  njuptGpa: string;
+  psuGpa: string;
   country: string;
   countryOther: string;
   school: string;
@@ -49,6 +54,10 @@ type FormState = {
 };
 
 const INITIAL_FORM_STATE: FormState = {
+  applicantName: '',
+  gpaScale: '',
+  njuptGpa: '',
+  psuGpa: '',
   country: '',
   countryOther: '',
   school: '',
@@ -122,7 +131,16 @@ export default function SubmitDpPage(): React.JSX.Element {
   );
 
   const requiredFieldsReady = useMemo(() => {
+    const njuptGpaValue = Number(form.njuptGpa);
+    const psuGpaValue = Number(form.psuGpa);
+    const njuptGpaReady = form.njuptGpa.trim() !== '' && !Number.isNaN(njuptGpaValue);
+    const psuGpaReady = form.psuGpa.trim() === '' || !Number.isNaN(psuGpaValue);
+
     return Boolean(
+      form.applicantName.trim() &&
+      form.gpaScale &&
+      njuptGpaReady &&
+      psuGpaReady &&
       countryValue &&
       form.school.trim() &&
       academicYearValue &&
@@ -132,6 +150,10 @@ export default function SubmitDpPage(): React.JSX.Element {
       resultValue
     );
   }, [
+    form.applicantName,
+    form.gpaScale,
+    form.njuptGpa,
+    form.psuGpa,
     form.school,
     countryValue,
     academicYearValue,
@@ -249,6 +271,10 @@ export default function SubmitDpPage(): React.JSX.Element {
     }
 
     const payload = {
+      申请人: form.applicantName.trim(),
+      分数制: form.gpaScale,
+      'NJUPT GPA': Number(form.njuptGpa),
+      'PSU GPA': form.psuGpa.trim() ? Number(form.psuGpa) : null,
       国家: countryValue,
       学校: form.school.trim(),
       学年: academicYearValue,
@@ -384,6 +410,57 @@ export default function SubmitDpPage(): React.JSX.Element {
           </header>
 
           <form className="pin-submit-form" onSubmit={handleSubmit}>
+            <label className="pin-form-field">
+              <span>申请人 *</span>
+              <input
+                type="text"
+                value={form.applicantName}
+                onChange={handleInputChange('applicantName')}
+                placeholder="可填昵称，不建议填真名"
+                required
+              />
+              <p className="pin-form-hint">随意填，可以填昵称，不建议填真名。</p>
+            </label>
+
+            <label className="pin-form-field">
+              <span>分数制 *</span>
+              <select value={form.gpaScale} onChange={handleInputChange('gpaScale')} required>
+                <option value="">请选择</option>
+                {GPA_SCALE_OPTIONS.map((option) => (
+                  <option key={option} value={option}>
+                    {option}
+                  </option>
+                ))}
+              </select>
+            </label>
+
+            <label className="pin-form-field">
+              <span>NJUPT GPA *</span>
+              <input
+                type="number"
+                inputMode="decimal"
+                step="0.01"
+                min="0"
+                value={form.njuptGpa}
+                onChange={handleInputChange('njuptGpa')}
+                placeholder="例如：4.23"
+                required
+              />
+            </label>
+
+            <label className="pin-form-field">
+              <span>PSU GPA</span>
+              <input
+                type="number"
+                inputMode="decimal"
+                step="0.01"
+                min="0"
+                value={form.psuGpa}
+                onChange={handleInputChange('psuGpa')}
+                placeholder="例如：3.78"
+              />
+            </label>
+
             <label className="pin-form-field">
               <span>国家 *</span>
               <select value={form.country} onChange={handleCountryChange} required>
