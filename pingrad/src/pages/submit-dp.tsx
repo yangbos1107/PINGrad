@@ -14,6 +14,7 @@ const TERM_OPTIONS = ['Fall', 'Spring', 'Summer', 'Other'] as const;
 const DEGREE_OPTIONS = ['MS', 'MEng', 'PhD', 'Other'] as const;
 const RESULT_OPTIONS = ['Offer', 'Reject', 'Waitlist', 'Other'] as const;
 const GPA_SCALE_OPTIONS = ['5.0 NJUPT', '5.0 NJUPT + 4.0 PSU'] as const;
+const GPA_INPUT_PATTERN = /^\d*(?:\.\d*)?$/;
 
 type TurnstileWidgetId = string | number;
 
@@ -87,6 +88,14 @@ function resolveSelectableValue(selected: string, customValue: string): string {
     return customValue.trim();
   }
   return selected.trim();
+}
+
+function normalizeGpaInput(rawValue: string): string | null {
+  const normalizedValue = rawValue.replace(/[，。．]/g, '.').replace(/\s+/g, '');
+  if (normalizedValue === '' || GPA_INPUT_PATTERN.test(normalizedValue)) {
+    return normalizedValue;
+  }
+  return null;
 }
 
 export default function SubmitDpPage(): React.JSX.Element {
@@ -340,9 +349,17 @@ export default function SubmitDpPage(): React.JSX.Element {
       event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
     ): void => {
       const {value} = event.target;
+      let nextValue = value;
+      if (key === 'njuptGpa' || key === 'psuGpa') {
+        const normalizedValue = normalizeGpaInput(value);
+        if (normalizedValue === null) {
+          return;
+        }
+        nextValue = normalizedValue;
+      }
       setForm((current) => ({
         ...current,
-        [key]: value
+        [key]: nextValue
       }));
     };
 
@@ -437,10 +454,9 @@ export default function SubmitDpPage(): React.JSX.Element {
             <label className="pin-form-field">
               <span>NJUPT GPA *</span>
               <input
-                type="number"
+                type="text"
                 inputMode="decimal"
-                step="0.01"
-                min="0"
+                pattern="\\d*(\\.\\d*)?"
                 value={form.njuptGpa}
                 onChange={handleInputChange('njuptGpa')}
                 placeholder="例如：4.23"
@@ -451,10 +467,9 @@ export default function SubmitDpPage(): React.JSX.Element {
             <label className="pin-form-field">
               <span>PSU GPA</span>
               <input
-                type="number"
+                type="text"
                 inputMode="decimal"
-                step="0.01"
-                min="0"
+                pattern="\\d*(\\.\\d*)?"
                 value={form.psuGpa}
                 onChange={handleInputChange('psuGpa')}
                 placeholder="例如：3.78"
