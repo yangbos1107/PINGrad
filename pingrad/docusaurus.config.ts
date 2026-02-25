@@ -87,7 +87,7 @@ const config: Config = {
           routeBasePath: 'docs',
           sidebarPath: './sidebars.ts',
           editUrl: `${githubRepoUrl}/edit/main/pingrad/`,
-          showLastUpdateAuthor: true,
+          showLastUpdateAuthor: false,
           showLastUpdateTime: true
         },
         blog: false,
