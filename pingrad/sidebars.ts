@@ -1,9 +1,9 @@
 import type {SidebarsConfig} from '@docusaurus/plugin-content-docs';
 
-type DifficultyKey = 's' | 'aplus' | 'a' | 'aminus' | 'bplus' | 'b' | 'bminus' | 'cplus';
-type RegionKey = 'us' | 'uk' | 'hk' | 'sg' | 'au';
+type ZoneKey = 'zone-v' | 'zone-iv' | 'zone-iii' | 'zone-ii' | 'zone-i';
+type RankedRegionKey = 'us' | 'uk';
 
-const difficultyBucket = (region: RegionKey, label: string, tier: DifficultyKey, items: string[]) => {
+const zoneBucket = (region: RankedRegionKey, label: string, zone: ZoneKey, items: string[]) => {
   return {
     type: 'category' as const,
     label,
@@ -11,21 +11,18 @@ const difficultyBucket = (region: RegionKey, label: string, tier: DifficultyKey,
     collapsed: true,
     link: {
       type: 'doc' as const,
-      id: `tiers/${region}/${tier}/index`
+      id: `regions/${region}/${zone}/index`
     },
     items
   };
 };
 
-const difficultyBuckets = (region: RegionKey, itemsByTier: Partial<Record<DifficultyKey, string[]>>) => [
-  difficultyBucket(region, 'S', 's', itemsByTier.s ?? []),
-  difficultyBucket(region, 'A+', 'aplus', itemsByTier.aplus ?? []),
-  difficultyBucket(region, 'A', 'a', itemsByTier.a ?? []),
-  difficultyBucket(region, 'A-', 'aminus', itemsByTier.aminus ?? []),
-  difficultyBucket(region, 'B+', 'bplus', itemsByTier.bplus ?? []),
-  difficultyBucket(region, 'B', 'b', itemsByTier.b ?? []),
-  difficultyBucket(region, 'B-', 'bminus', itemsByTier.bminus ?? []),
-  difficultyBucket(region, 'C+', 'cplus', itemsByTier.cplus ?? [])
+const zoneBuckets = (region: RankedRegionKey, itemsByZone: Partial<Record<ZoneKey, string[]>>) => [
+  zoneBucket(region, 'Zone V', 'zone-v', itemsByZone['zone-v'] ?? []),
+  zoneBucket(region, 'Zone IV', 'zone-iv', itemsByZone['zone-iv'] ?? []),
+  zoneBucket(region, 'Zone III', 'zone-iii', itemsByZone['zone-iii'] ?? []),
+  zoneBucket(region, 'Zone II', 'zone-ii', itemsByZone['zone-ii'] ?? []),
+  zoneBucket(region, 'Zone I', 'zone-i', itemsByZone['zone-i'] ?? [])
 ];
 
 const sidebars: SidebarsConfig = {
@@ -33,7 +30,7 @@ const sidebars: SidebarsConfig = {
     'intro',
     {
       type: 'category',
-      label: '项目地区与难度导航',
+      label: '项目地区与录取难度导航',
       collapsible: false,
       items: [
         {
@@ -41,68 +38,65 @@ const sidebars: SidebarsConfig = {
           label: '美国',
           link: {
             type: 'doc',
-            id: 'tiers/us/index'
+            id: 'regions/us/index'
           },
-          items: difficultyBuckets('us', {
-            s: [
-              'tiers/us/s/massachusetts-institute-of-technology',
-              'tiers/us/s/stanford-university',
-              'tiers/us/s/california-institute-of-technology',
-              'tiers/us/s/university-of-california-berkeley'
+          items: zoneBuckets('us', {
+            'zone-v': [
+              'regions/us/zone-v/massachusetts-institute-of-technology',
+              'regions/us/zone-v/stanford-university',
+              'regions/us/zone-v/california-institute-of-technology',
+              'regions/us/zone-v/university-of-california-berkeley',
+              'regions/us/zone-v/princeton-university',
+              'regions/us/zone-v/yale-university',
+              'regions/us/zone-v/carnegie-mellon-university',
+              'regions/us/zone-v/university-of-california-los-angeles',
+              'regions/us/zone-v/university-of-illinois-urbana-champaign',
+              'regions/us/zone-v/georgia-institute-of-technology',
+              'regions/us/zone-v/university-of-california-berkeley-meng',
+              'regions/us/zone-v/cornell-university'
             ],
-            aplus: [
-              'tiers/us/aplus/princeton-university',
-              'tiers/us/aplus/yale-university',
-              'tiers/us/aplus/carnegie-mellon-university',
-              'tiers/us/aplus/university-of-california-los-angeles',
-              'tiers/us/aplus/university-of-illinois-urbana-champaign',
-              'tiers/us/aplus/georgia-institute-of-technology',
-              'tiers/us/aplus/university-of-california-berkeley-meng',
-              'tiers/us/aplus/cornell-university'
+            'zone-iv': [
+              'regions/us/zone-iv/university-of-michigan-ann-arbor',
+              'regions/us/zone-iv/columbia-university',
+              'regions/us/zone-iv/purdue-university-main-campus',
+              'regions/us/zone-iv/university-of-washington',
+              'regions/us/zone-iv/university-of-texas-austin',
+              'regions/us/zone-iv/university-of-pennsylvania',
+              'regions/us/zone-iv/johns-hopkins-university',
+              'regions/us/zone-iv/duke-university',
+              'regions/us/zone-iv/harvard-university',
+              'regions/us/zone-iv/university-of-southern-california',
+              'regions/us/zone-iv/northwestern-university',
+              'regions/us/zone-iv/northwestern-university-msce',
+              'regions/us/zone-iv/rice-university',
+              'regions/us/zone-iv/university-of-california-davis',
+              'regions/us/zone-iv/university-of-wisconsin-madison',
+              'regions/us/zone-iv/brown-university',
+              'regions/us/zone-iv/university-of-illinois-urbana-champaign-meng',
+              'regions/us/zone-iv/the-pennsylvania-state-university',
+              'regions/us/zone-iv/texas-a-and-m-university-college-station'
             ],
-            a: [
-              'tiers/us/a/university-of-michigan-ann-arbor',
-              'tiers/us/a/columbia-university',
-              'tiers/us/a/purdue-university-main-campus',
-              'tiers/us/a/university-of-washington',
-              'tiers/us/a/university-of-texas-austin',
-              'tiers/us/a/university-of-pennsylvania',
-              'tiers/us/a/johns-hopkins-university',
-              'tiers/us/a/duke-university'
+            'zone-iii': [
+              'regions/us/zone-iii/new-york-university',
+              'regions/us/zone-iii/new-york-university-msce',
+              'regions/us/zone-iii/university-of-washington-pmp',
+              'regions/us/zone-iii/washington-university-in-st-louis',
+              'regions/us/zone-iii/university-of-maryland-college-park',
+              'regions/us/zone-iii/ohio-state-university',
+              'regions/us/zone-iii/university-of-california-santa-barbara',
+              'regions/us/zone-iii/university-of-southern-california'
             ],
-            aminus: [
-              'tiers/us/aminus/harvard-university',
-              'tiers/us/aminus/university-of-southern-california',
-              'tiers/us/aminus/northwestern-university',
-              'tiers/us/aminus/northwestern-university-msce',
-              'tiers/us/aminus/rice-university',
-              'tiers/us/aminus/university-of-california-davis',
-              'tiers/us/aminus/university-of-wisconsin-madison',
-              'tiers/us/aminus/brown-university',
-              'tiers/us/aminus/university-of-illinois-urbana-champaign-meng',
-              'tiers/us/aminus/the-pennsylvania-state-university',
-              'tiers/us/aminus/texas-a-and-m-university-college-station'
+            'zone-ii': [
+              'regions/us/zone-ii/university-of-california-irvine',
+              'regions/us/zone-ii/university-of-minnesota-twin-cities',
+              'regions/us/zone-ii/northeastern-university',
+              'regions/us/zone-ii/rutgers-the-state-university-of-new-jersey',
+              'regions/us/zone-ii/university-of-massachusetts-amherst',
+              'regions/us/zone-ii/university-of-pittsburgh',
+              'regions/us/zone-ii/stony-brook-university-suny',
+              'regions/us/zone-ii/george-washington-university'
             ],
-            bplus: [
-              'tiers/us/bplus/new-york-university',
-              'tiers/us/bplus/new-york-university-msce',
-              'tiers/us/bplus/university-of-washington-pmp',
-              'tiers/us/bplus/washington-university-in-st-louis',
-              'tiers/us/bplus/university-of-maryland-college-park',
-              'tiers/us/bplus/ohio-state-university',
-              'tiers/us/bplus/university-of-california-santa-barbara',
-              'tiers/us/bplus/university-of-southern-california'
-            ],
-            b: [
-              'tiers/us/b/university-of-california-irvine',
-              'tiers/us/b/university-of-minnesota-twin-cities',
-              'tiers/us/b/northeastern-university',
-              'tiers/us/b/rutgers-the-state-university-of-new-jersey',
-              'tiers/us/b/university-of-massachusetts-amherst',
-              'tiers/us/b/university-of-pittsburgh',
-              'tiers/us/b/stony-brook-university-suny',
-              'tiers/us/b/george-washington-university'
-            ]
+            'zone-i': []
           })
         },
         {
@@ -110,34 +104,32 @@ const sidebars: SidebarsConfig = {
           label: '英国',
           link: {
             type: 'doc',
-            id: 'tiers/uk/index'
+            id: 'regions/uk/index'
           },
-          items: difficultyBuckets('uk', {
-            s: [
-              'tiers/uk/s/university-of-cambridge',
-              'tiers/uk/s/university-of-oxford',
+          items: zoneBuckets('uk', {
+            'zone-v': [
+              'regions/uk/zone-v/university-of-cambridge',
+              'regions/uk/zone-v/university-of-oxford'
             ],
-            a: [
-              'tiers/uk/a/imperial-college-london'
+            'zone-iv': [
+              'regions/uk/zone-iv/imperial-college-london',
+              'regions/uk/zone-iv/university-college-london',
+              'regions/uk/zone-iv/university-of-edinburgh'
             ],
-            aminus: [
-              'tiers/uk/aminus/university-college-london',
-              'tiers/uk/aminus/university-of-edinburgh'
+            'zone-iii': [
+              'regions/uk/zone-iii/university-of-warwick',
+              'regions/uk/zone-iii/university-of-manchester',
+              'regions/uk/zone-iii/university-of-southampton'
             ],
-            bplus: [
-              'tiers/uk/bplus/university-of-warwick',
-              'tiers/uk/bplus/university-of-manchester',
-              'tiers/uk/bplus/university-of-southampton'
+            'zone-ii': [
+              'regions/uk/zone-ii/university-of-glasgow',
+              'regions/uk/zone-ii/university-of-nottingham',
+              'regions/uk/zone-ii/university-of-leeds',
+              'regions/uk/zone-ii/university-of-birmingham'
             ],
-            b: [
-              'tiers/uk/b/university-of-glasgow',
-              'tiers/uk/b/university-of-nottingham',
-              'tiers/uk/b/university-of-leeds',
-              'tiers/uk/b/university-of-birmingham',
-            ],
-            bminus: [
-              'tiers/uk/bminus/university-of-sheffield',
-              'tiers/uk/bminus/queen-mary-university-of-london'
+            'zone-i': [
+              'regions/uk/zone-i/university-of-sheffield',
+              'regions/uk/zone-i/queen-mary-university-of-london'
             ]
           })
         },
@@ -146,57 +138,41 @@ const sidebars: SidebarsConfig = {
           label: '香港',
           link: {
             type: 'doc',
-            id: 'tiers/hk/index'
+            id: 'regions/hk/index'
           },
-          items: difficultyBuckets('hk', {
-            a: [
-              'tiers/hk/a/hong-kong-university-of-science-and-technology'
-            ],
-            aminus: [
-              'tiers/hk/aminus/university-of-hong-kong'
-            ],
-            bplus: [
-              'tiers/hk/bplus/chinese-university-of-hong-kong'
-            ],
-            b: [
-              'tiers/hk/b/city-university-of-hong-kong',
-              'tiers/hk/b/hong-kong-polytechnic-university'
-            ]
-          })
+          items: [
+            'regions/hk/schools/hong-kong-university-of-science-and-technology',
+            'regions/hk/schools/university-of-hong-kong',
+            'regions/hk/schools/chinese-university-of-hong-kong',
+            'regions/hk/schools/city-university-of-hong-kong',
+            'regions/hk/schools/hong-kong-polytechnic-university'
+          ]
         },
         {
           type: 'category',
           label: '新加坡',
           link: {
             type: 'doc',
-            id: 'tiers/sg/index'
+            id: 'regions/sg/index'
           },
-          items: difficultyBuckets('sg', {
-            a: [
-              'tiers/sg/a/national-university-of-singapore'
-            ],
-            aminus: [
-              'tiers/sg/aminus/nanyang-technological-university'
-            ]
-          })
+          items: [
+            'regions/sg/schools/national-university-of-singapore',
+            'regions/sg/schools/nanyang-technological-university'
+          ]
         },
         {
           type: 'category',
           label: '澳洲',
           link: {
             type: 'doc',
-            id: 'tiers/au/index'
+            id: 'regions/au/index'
           },
-          items: difficultyBuckets('au', {
-            bminus: [
-              'tiers/au/bminus/university-of-new-south-wales'
-            ],
-            cplus: [
-              'tiers/au/cplus/university-of-melbourne',
-              'tiers/au/cplus/university-of-sydney',
-              'tiers/au/cplus/australian-national-university'
-            ]
-          })
+          items: [
+            'regions/au/schools/university-of-new-south-wales',
+            'regions/au/schools/university-of-melbourne',
+            'regions/au/schools/university-of-sydney',
+            'regions/au/schools/australian-national-university'
+          ]
         }
       ]
     }
