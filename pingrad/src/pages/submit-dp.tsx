@@ -14,7 +14,7 @@ const TERM_OPTIONS = ['Fall', 'Spring', 'Summer', 'Other'] as const;
 const DEGREE_OPTIONS = ['MS', 'MEng', 'PhD', 'Other'] as const;
 const RESULT_OPTIONS = ['Offer', 'Reject', 'Waitlist', 'Other'] as const;
 const GPA_SCALE_OPTIONS = ['5.0 NJUPT', '5.0 NJUPT + 4.0 PSU'] as const;
-const GPA_INPUT_PATTERN = /^\d*(?:\.\d*)?$/;
+const GPA_INPUT_PATTERN = /^[0-9]+(?:\.[0-9]+)?$/;
 
 type TurnstileWidgetId = string | number;
 
@@ -91,7 +91,10 @@ function resolveSelectableValue(selected: string, customValue: string): string {
 }
 
 function normalizeGpaInput(rawValue: string): string | null {
-  const normalizedValue = rawValue.replace(/[，。．]/g, '.').replace(/\s+/g, '');
+  const normalizedValue = rawValue
+    .replace(/[０-９]/g, (digit) => String.fromCharCode(digit.charCodeAt(0) - 65248))
+    .replace(/[，。．,]/g, '.')
+    .replace(/\s+/g, '');
   if (normalizedValue === '' || GPA_INPUT_PATTERN.test(normalizedValue)) {
     return normalizedValue;
   }
@@ -456,7 +459,8 @@ export default function SubmitDpPage(): React.JSX.Element {
               <input
                 type="text"
                 inputMode="decimal"
-                pattern="\\d*(\\.\\d*)?"
+                pattern="[0-9]+(\\.[0-9]+)?"
+                title="请输入数字格式（如 3.74）"
                 value={form.njuptGpa}
                 onChange={handleInputChange('njuptGpa')}
                 placeholder="例如：4.23"
@@ -469,7 +473,8 @@ export default function SubmitDpPage(): React.JSX.Element {
               <input
                 type="text"
                 inputMode="decimal"
-                pattern="\\d*(\\.\\d*)?"
+                pattern="[0-9]+(\\.[0-9]+)?"
+                title="请输入数字格式（如 3.74）"
                 value={form.psuGpa}
                 onChange={handleInputChange('psuGpa')}
                 placeholder="例如：3.78"
