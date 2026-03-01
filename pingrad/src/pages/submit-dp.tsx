@@ -656,7 +656,7 @@ export default function SubmitDpPage(): React.JSX.Element {
                 rows={4}
                 value={form.notes}
                 onChange={handleInputChange('notes')}
-                placeholder="可选：补充你的背景、奖学金、面试轮次等信息"
+                placeholder="可选：补充你的背景（托福、竞赛科研情况、2+2/3+1/4+0 等）、奖学金、面试轮次等信息"
               />
             </label>
 
