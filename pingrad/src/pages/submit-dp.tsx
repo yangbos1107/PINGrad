@@ -459,7 +459,7 @@ export default function SubmitDpPage(): React.JSX.Element {
               <input
                 type="text"
                 inputMode="decimal"
-                pattern="[0-9]+(\\.[0-9]+)?"
+                pattern="[0-9]+([.][0-9]+)?"
                 title="请输入数字格式（如 3.74）"
                 value={form.njuptGpa}
                 onChange={handleInputChange('njuptGpa')}
@@ -473,7 +473,7 @@ export default function SubmitDpPage(): React.JSX.Element {
               <input
                 type="text"
                 inputMode="decimal"
-                pattern="[0-9]+(\\.[0-9]+)?"
+                pattern="[0-9]+([.][0-9]+)?"
                 title="请输入数字格式（如 3.74）"
                 value={form.psuGpa}
                 onChange={handleInputChange('psuGpa')}
