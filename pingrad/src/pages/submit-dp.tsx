@@ -14,7 +14,6 @@ const TERM_OPTIONS = ['Fall', 'Spring', 'Summer', 'Other'] as const;
 const DEGREE_OPTIONS = ['MS', 'MEng', 'PhD', 'Other'] as const;
 const RESULT_OPTIONS = ['Offer', 'Reject', 'Waitlist', 'Other'] as const;
 const GPA_SCALE_OPTIONS = ['5.0 NJUPT', '5.0 NJUPT + 4.0 PSU'] as const;
-const GPA_INPUT_PATTERN = /^[0-9]+(?:\.[0-9]+)?$/;
 
 type TurnstileWidgetId = string | number;
 
@@ -90,15 +89,14 @@ function resolveSelectableValue(selected: string, customValue: string): string {
   return selected.trim();
 }
 
-function normalizeGpaInput(rawValue: string): string | null {
-  const normalizedValue = rawValue
+function sanitizeGpaForSubmission(rawValue: string): string {
+  return rawValue
     .replace(/[０-９]/g, (digit) => String.fromCharCode(digit.charCodeAt(0) - 65248))
-    .replace(/[，。．,]/g, '.')
-    .replace(/\s+/g, '');
-  if (normalizedValue === '' || GPA_INPUT_PATTERN.test(normalizedValue)) {
-    return normalizedValue;
-  }
-  return null;
+    .replace(/\s+/g, '')
+    .replace(/[A-Za-zＡ-Ｚａ-ｚ]/g, '')
+    .replace(/[\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff]/g, '')
+    .replace(/[^0-9]/g, '.')
+    .replace(/\.+/g, '.');
 }
 
 export default function SubmitDpPage(): React.JSX.Element {
@@ -143,16 +141,12 @@ export default function SubmitDpPage(): React.JSX.Element {
   );
 
   const requiredFieldsReady = useMemo(() => {
-    const njuptGpaValue = Number(form.njuptGpa);
-    const psuGpaValue = Number(form.psuGpa);
-    const njuptGpaReady = form.njuptGpa.trim() !== '' && !Number.isNaN(njuptGpaValue);
-    const psuGpaReady = form.psuGpa.trim() === '' || !Number.isNaN(psuGpaValue);
+    const njuptGpaReady = form.njuptGpa.trim() !== '';
 
     return Boolean(
       form.applicantName.trim() &&
       form.gpaScale &&
       njuptGpaReady &&
-      psuGpaReady &&
       countryValue &&
       form.school.trim() &&
       academicYearValue &&
@@ -165,7 +159,6 @@ export default function SubmitDpPage(): React.JSX.Element {
     form.applicantName,
     form.gpaScale,
     form.njuptGpa,
-    form.psuGpa,
     form.school,
     countryValue,
     academicYearValue,
@@ -282,11 +275,14 @@ export default function SubmitDpPage(): React.JSX.Element {
       return;
     }
 
+    const sanitizedNjuptGpa = sanitizeGpaForSubmission(form.njuptGpa);
+    const sanitizedPsuGpa = sanitizeGpaForSubmission(form.psuGpa);
+
     const payload = {
       申请人: form.applicantName.trim(),
       分数制: form.gpaScale,
-      'NJUPT GPA': Number(form.njuptGpa),
-      'PSU GPA': form.psuGpa.trim() ? Number(form.psuGpa) : null,
+      'NJUPT GPA': sanitizedNjuptGpa,
+      'PSU GPA': sanitizedPsuGpa || null,
       国家: countryValue,
       学校: form.school.trim(),
       学年: academicYearValue,
@@ -352,17 +348,9 @@ export default function SubmitDpPage(): React.JSX.Element {
       event: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
     ): void => {
       const {value} = event.target;
-      let nextValue = value;
-      if (key === 'njuptGpa' || key === 'psuGpa') {
-        const normalizedValue = normalizeGpaInput(value);
-        if (normalizedValue === null) {
-          return;
-        }
-        nextValue = normalizedValue;
-      }
       setForm((current) => ({
         ...current,
-        [key]: nextValue
+        [key]: value
       }));
     };
 
@@ -459,8 +447,6 @@ export default function SubmitDpPage(): React.JSX.Element {
               <input
                 type="text"
                 inputMode="decimal"
-                pattern="[0-9]+([.][0-9]+)?"
-                title="请输入数字格式（如 3.74）"
                 value={form.njuptGpa}
                 onChange={handleInputChange('njuptGpa')}
                 placeholder="例如：4.23"
@@ -473,8 +459,6 @@ export default function SubmitDpPage(): React.JSX.Element {
               <input
                 type="text"
                 inputMode="decimal"
-                pattern="[0-9]+([.][0-9]+)?"
-                title="请输入数字格式（如 3.74）"
                 value={form.psuGpa}
                 onChange={handleInputChange('psuGpa')}
                 placeholder="例如：3.78"
