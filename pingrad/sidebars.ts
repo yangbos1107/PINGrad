@@ -173,6 +173,18 @@ const sidebars: SidebarsConfig = {
             'regions/au/schools/university-of-sydney',
             'regions/au/schools/australian-national-university'
           ]
+        },
+        {
+          type: 'category',
+          label: '国内',
+          link: {
+            type: 'doc',
+            id: 'regions/cn/index'
+          },
+          items: [
+            'regions/cn/schools/shanghai-jiao-tong-university',
+            'regions/cn/schools/university-of-electronic-science-and-technology-of-china'
+          ]
         }
       ]
     }
