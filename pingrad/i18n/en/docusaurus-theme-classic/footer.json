@@ -1,0 +1,50 @@
+{
+  "link.title.浏览": {
+    "message": "Browse",
+    "description": "The title of the footer links column with title=浏览 in the footer"
+  },
+  "link.title.社区": {
+    "message": "Community",
+    "description": "The title of the footer links column with title=社区 in the footer"
+  },
+  "link.title.更多": {
+    "message": "More",
+    "description": "The title of the footer links column with title=更多 in the footer"
+  },
+  "link.item.label.选校导航": {
+    "message": "Programs",
+    "description": "The label of footer link with label=选校导航 linking to /"
+  },
+  "link.item.label.录取情况": {
+    "message": "Admission Results",
+    "description": "The label of footer link with label=录取情况 linking to /datapoints"
+  },
+  "link.item.label.分享申请结果": {
+    "message": "Share Results",
+    "description": "The label of footer link with label=分享申请结果 linking to /submit-dp"
+  },
+  "link.item.label.GitHub": {
+    "message": "GitHub",
+    "description": "The label of footer link with label=GitHub linking to https://github.com/yangbos1107/PINGrad"
+  },
+  "link.item.label.贡献指南": {
+    "message": "Contributing",
+    "description": "The label of footer link with label=贡献指南 linking to /intro#如何贡献"
+  },
+  "link.item.label.Discord 交流群": {
+    "message": "Discord community",
+    "description": "The label of footer link with label=Discord 交流群 linking to https://discord.gg/wJaMwqFRtu"
+  },
+  "link.item.label.资源": {
+    "message": "Resources",
+    "description": "The label of footer link with label=资源 linking to /resources"
+  },
+  "link.item.label.项目合集": {
+    "message": "Projects",
+    "description": "The label of footer link with label=项目合集 linking to /projects"
+  },
+  "link.item.label.联系": {
+    "message": "Contact",
+    "description": "The label of footer link with label=联系 linking to /contact"
+  }
+}

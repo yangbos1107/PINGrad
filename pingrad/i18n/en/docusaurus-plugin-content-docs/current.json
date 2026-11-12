@@ -1,0 +1,30 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.us": {
+    "message": "United States",
+    "description": "The label for category '美国' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.uk": {
+    "message": "United Kingdom",
+    "description": "The label for category '英国' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.hk": {
+    "message": "Hong Kong",
+    "description": "The label for category '香港' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.sg": {
+    "message": "Singapore",
+    "description": "The label for category '新加坡' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.au": {
+    "message": "Australia",
+    "description": "The label for category '澳洲' in sidebar 'tutorialSidebar'"
+  },
+  "sidebar.tutorialSidebar.category.cn": {
+    "message": "Mainland China",
+    "description": "The label for category '国内' in sidebar 'tutorialSidebar'"
+  }
+}

@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react';
+import {translate} from '@docusaurus/Translate';
 
-const BLOCKED_COPY_TEXT = '该内容不允许复制';
+const blockedCopyText = () => translate({id: 'clipboard.blocked', message: '该内容不允许复制'});
 
 type MutableClipboard = {
   writeText: (text: string) => Promise<void>;
@@ -11,12 +12,12 @@ function replaceClipboardContent(event: ClipboardEvent) {
 
   if (event.clipboardData) {
     event.clipboardData.clearData();
-    event.clipboardData.setData('text/plain', BLOCKED_COPY_TEXT);
+    event.clipboardData.setData('text/plain', blockedCopyText());
     return;
   }
 
   if (navigator.clipboard?.writeText) {
-    void navigator.clipboard.writeText(BLOCKED_COPY_TEXT).catch(() => {
+    void navigator.clipboard.writeText(blockedCopyText()).catch(() => {
       // Ignore clipboard API failures and keep preventDefault behavior.
     });
   }
@@ -30,7 +31,7 @@ export default function Root({children}: {children: React.ReactNode}): React.JSX
     if (clipboard?.writeText) {
       const originalWriteText = clipboard.writeText.bind(clipboard);
       try {
-        clipboard.writeText = () => originalWriteText(BLOCKED_COPY_TEXT);
+        clipboard.writeText = () => originalWriteText(blockedCopyText());
         restoreClipboardWriteText = () => {
           clipboard.writeText = originalWriteText;
         };

@@ -1,0 +1,397 @@
+.pin-home,
+.pin-directory {
+  --pin-secondary-text: #5d6565;
+}
+
+[data-theme='dark'] .pin-home,
+[data-theme='dark'] .pin-directory {
+  --pin-secondary-text: #a8b4b6;
+}
+
+.pin-home {
+  max-width: 1080px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+}
+
+.pin-intro {
+  width: 100%;
+  max-width: 780px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+}
+
+.pin-intro h1 {
+  font-size: clamp(2rem, 4vw, 2.55rem);
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
+
+.pin-intro h2 {
+  font-size: 1.5rem;
+  margin: 2.5rem 0 0.75rem;
+}
+
+.pin-intro p,
+.pin-intro li {
+  line-height: 1.85;
+}
+
+.pin-intro img {
+  max-width: min(100%, 260px);
+}
+
+.pin-intro a {
+  text-underline-offset: 0.2em;
+}
+
+.pin-intro :focus-visible {
+  outline: 2px solid var(--pin-teal-text);
+  outline-offset: 3px;
+}
+
+.pin-navbar-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.pin-navbar-controls > .navbar__item {
+  display: block;
+  padding: 0;
+}
+
+.pin-locale-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  color: var(--ifm-navbar-link-color);
+}
+
+.pin-locale-button:hover {
+  background: var(--ifm-color-emphasis-200);
+}
+
+.pin-locale-button:focus-visible {
+  outline: 2px solid var(--pin-teal-text);
+  outline-offset: 3px;
+}
+
+@media (min-width: 997px) and (max-width: 1199px) {
+  .navbar {
+    --ifm-navbar-item-padding-horizontal: 0.5rem;
+  }
+
+  .navbar__brand {
+    flex-shrink: 0;
+    margin-right: 0.5rem;
+  }
+
+  .navbar__link {
+    white-space: nowrap;
+  }
+
+  .navbar__search-input {
+    width: 9rem;
+  }
+}
+
+.pin-home h1 {
+  margin: 0 0 1rem;
+  font-size: clamp(2rem, 4vw, 2.55rem);
+  letter-spacing: -0.02em;
+}
+
+.pin-home h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.5rem;
+}
+
+.pin-home h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+}
+
+.pin-home p {
+  line-height: 1.78;
+}
+
+.pin-home-intro p {
+  margin: 0;
+  max-width: 65ch;
+}
+
+.pin-home-content {
+  display: grid;
+  grid-template-columns: minmax(0, 1.8fr) minmax(0, 1fr);
+  gap: 4rem;
+  margin-top: 2.5rem;
+}
+
+.pin-home-note,
+.pin-home-cases p,
+.pin-home-about p {
+  color: var(--pin-secondary-text);
+}
+
+.pin-region-list {
+  list-style: none;
+  margin: 1.25rem 0 0;
+  padding: 0;
+  border-top: 1px solid var(--pin-border);
+}
+
+.pin-region-list li {
+  border-bottom: 1px solid var(--pin-border);
+}
+
+.pin-region-list a {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem 1rem;
+  padding: 1rem 0.25rem;
+  color: var(--pin-teal-text);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.pin-region-count {
+  color: var(--pin-secondary-text);
+  font-size: 0.875rem;
+  font-weight: 400;
+  font-variant-numeric: tabular-nums;
+}
+
+.pin-region-list a:hover,
+.pin-school-list > li:hover {
+  background: var(--pin-active-surface);
+}
+
+.pin-primary-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--pin-teal-text);
+  border-radius: 6px;
+  color: var(--pin-teal-text);
+  font-weight: 600;
+}
+
+.pin-primary-link:hover {
+  background: var(--pin-active-surface);
+  color: var(--pin-teal-text-hover);
+  text-decoration: none;
+}
+
+.pin-home-contribute {
+  margin-top: 2rem;
+}
+
+.pin-home-contribute p {
+  margin-bottom: 0.5rem;
+}
+
+.pin-home-about {
+  margin-top: 2.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--pin-border);
+  font-size: 0.95rem;
+}
+
+.pin-home-about p {
+  margin-bottom: 0.25rem;
+}
+
+.pin-region-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 1rem;
+  border-bottom: 1px solid var(--pin-border);
+  margin: 1.5rem 0;
+}
+
+.pin-region-nav a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  padding: 0.5rem 0.25rem;
+  color: var(--pin-secondary-text);
+  border-bottom: 2px solid transparent;
+}
+
+.pin-region-nav a[aria-current='page'] {
+  border-bottom-color: var(--pin-teal-text);
+  color: var(--pin-teal-text-active);
+  font-weight: 600;
+}
+
+.pin-directory-search label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.pin-directory-search input {
+  width: 100%;
+  min-height: 44px;
+  border: 1px solid var(--pin-secondary-text);
+  border-radius: 6px;
+  background: var(--pin-surface);
+  color: var(--pin-text);
+  caret-color: var(--pin-teal-text);
+  padding: 0.65rem 0.75rem;
+  font: inherit;
+}
+
+.pin-directory-search input::placeholder {
+  color: var(--pin-secondary-text);
+  opacity: 1;
+}
+
+.pin-home :focus-visible,
+.pin-directory :focus-visible {
+  outline: 2px solid var(--pin-teal-text);
+  outline-offset: 3px;
+}
+
+.pin-home ::selection,
+.pin-directory ::selection {
+  background: var(--pin-teal-soft);
+  color: var(--pin-teal-text-active);
+}
+
+.pin-home a,
+.pin-directory a {
+  text-underline-offset: 0.2em;
+}
+
+.pin-directory-status {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  min-height: 3.5rem;
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.pin-directory-status p {
+  margin: 0;
+  color: var(--pin-secondary-text);
+}
+
+.pin-directory button {
+  background: none;
+  border: 0;
+  min-height: 44px;
+  padding: 0.5rem 0;
+  color: var(--pin-teal-text);
+  font: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  cursor: pointer;
+}
+
+.pin-school-list,
+.pin-program-links {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.pin-school-list {
+  border-top: 1px solid var(--pin-border);
+}
+
+.pin-school-list > li {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  gap: 0.5rem 1.5rem;
+  align-items: baseline;
+  padding: 0.75rem 0.25rem;
+  border-bottom: 1px solid var(--pin-border);
+}
+
+.pin-school-name {
+  font-weight: 500;
+  overflow-wrap: anywhere;
+}
+
+.theme-doc-markdown .pin-program-links {
+  margin: 0;
+  padding: 0;
+}
+
+.pin-program-links li + li {
+  margin-top: 0.25rem;
+}
+
+.pin-program-links a {
+  display: inline-block;
+  padding: 0.125rem 0;
+  overflow-wrap: anywhere;
+}
+
+.pin-directory-empty {
+  padding: 2rem 0;
+  border-top: 1px solid var(--pin-border);
+}
+
+.pin-directory-empty p {
+  margin: 0 0 0.5rem;
+}
+
+@media (max-width: 768px) {
+  .pin-home {
+    padding: 2rem 1.25rem;
+  }
+
+  .pin-home-content {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+  }
+
+  .pin-home-cases {
+    order: -1;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.25rem;
+  }
+
+  .pin-home-cases > h2,
+  .pin-home-cases > p,
+  .pin-home-contribute h3,
+  .pin-home-contribute p {
+    display: none;
+  }
+
+  .pin-home-contribute {
+    margin: 0;
+  }
+}
+
+@media (max-width: 640px) {
+  .pin-school-list > li {
+    grid-template-columns: 1fr;
+  }
+
+  .pin-program-links a {
+    padding: 0.5rem 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .navbar-sidebar__brand .navbar__title {
+    display: none;
+  }
+}
