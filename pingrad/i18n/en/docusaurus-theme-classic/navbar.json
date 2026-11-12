@@ -1,0 +1,30 @@
+{
+  "title": {
+    "message": "PIN Grad",
+    "description": "The title in the navbar"
+  },
+  "logo.alt": {
+    "message": "PIN Grad Logo",
+    "description": "The alt text of navbar logo"
+  },
+  "item.label.选校导航": {
+    "message": "Programs",
+    "description": "Navbar item with label 选校导航"
+  },
+  "item.label.录取情况": {
+    "message": "Admission Results",
+    "description": "Navbar item with label 录取情况"
+  },
+  "item.label.分享申请结果": {
+    "message": "Share Results",
+    "description": "Navbar item with label 分享申请结果"
+  },
+  "item.label.关于": {
+    "message": "About",
+    "description": "Navbar item with label 关于"
+  },
+  "item.label.GitHub": {
+    "message": "GitHub",
+    "description": "Navbar item with label GitHub"
+  }
+}

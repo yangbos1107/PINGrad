@@ -1,0 +1,288 @@
+{
+  "navigation.language": {"message": "Change language"},
+  "submit.captchaError": {
+    "message": "Verification could not load. Refresh the page and try again."
+  },
+  "submit.captchaScriptError": {
+    "message": "Verification could not load. Please try again later."
+  },
+  "submit.required": {
+    "message": "Please complete all required fields."
+  },
+  "submit.captchaUnavailable": {
+    "message": "Verification is unavailable. Please contact the site maintainers."
+  },
+  "submit.captchaRequired": {
+    "message": "Please complete verification first."
+  },
+  "submit.failed": {
+    "message": "Submission failed. Please try again later."
+  },
+  "submit.success": {
+    "message": "Submitted! Pending review."
+  },
+  "submit.reviewNote": {
+    "message": "Submissions are reviewed before appearing on the site."
+  },
+  "submit.applicant": {
+    "message": "Applicant"
+  },
+  "submit.applicantPlaceholder": {
+    "message": "Use a nickname"
+  },
+  "submit.applicantHint": {
+    "message": "A nickname is fine; avoid using your real name."
+  },
+  "submit.gpaScale": {
+    "message": "GPA scale"
+  },
+  "submit.select": {
+    "message": "Select an option"
+  },
+  "submit.njuptGpaExample": {
+    "message": "e.g. 4.23"
+  },
+  "submit.psuGpaExample": {
+    "message": "e.g. 3.78"
+  },
+  "submit.country": {
+    "message": "Country / region"
+  },
+  "submit.countryOther": {
+    "message": "Other country / region"
+  },
+  "submit.countryPlaceholder": {
+    "message": "Enter a country or region"
+  },
+  "submit.school": {
+    "message": "School"
+  },
+  "submit.schoolPlaceholder": {
+    "message": "e.g. Carnegie Mellon University"
+  },
+  "submit.year": {
+    "message": "Academic year"
+  },
+  "submit.yearOther": {
+    "message": "Other academic year"
+  },
+  "submit.yearPlaceholder": {
+    "message": "Enter an academic year"
+  },
+  "submit.term": {
+    "message": "Term"
+  },
+  "submit.termOther": {
+    "message": "Other term"
+  },
+  "submit.termPlaceholder": {
+    "message": "Enter a term"
+  },
+  "submit.degree": {
+    "message": "Degree"
+  },
+  "submit.degreeOther": {
+    "message": "Other degree"
+  },
+  "submit.degreePlaceholder": {
+    "message": "Enter a degree"
+  },
+  "submit.program": {
+    "message": "Program"
+  },
+  "submit.programOther": {
+    "message": "Other program"
+  },
+  "submit.programPlaceholder": {
+    "message": "Enter a program"
+  },
+  "submit.result": {
+    "message": "Result"
+  },
+  "submit.resultOther": {
+    "message": "Other result"
+  },
+  "submit.resultPlaceholder": {
+    "message": "Enter a result"
+  },
+  "submit.applicationDate": {
+    "message": "Application date"
+  },
+  "submit.decisionDate": {
+    "message": "Decision date"
+  },
+  "submit.notes": {
+    "message": "Additional information"
+  },
+  "submit.notesPlaceholder": {
+    "message": "Optional: background (TOEFL, competitions, research, 2+2/3+1/4+0), scholarships, interview rounds, etc."
+  },
+  "submit.captcha": {
+    "message": "Verification"
+  },
+  "submit.captchaHint": {
+    "message": "Complete verification before submitting."
+  },
+  "submit.submitting": {
+    "message": "Submitting…"
+  },
+  "submit.button": {
+    "message": "Submit"
+  },
+  "navigation.continue": {
+    "message": "Continue"
+  },
+  "region.us": {
+    "message": "United States"
+  },
+  "region.uk": {
+    "message": "United Kingdom"
+  },
+  "region.hk": {
+    "message": "Hong Kong"
+  },
+  "region.sg": {
+    "message": "Singapore"
+  },
+  "region.au": {
+    "message": "Australia"
+  },
+  "region.cn": {
+    "message": "Mainland China"
+  },
+  "directory.title": {
+    "message": "{region} Programs"
+  },
+  "directory.order.pinyin": {
+    "message": "Listed by school name in Pinyin order. See each program page for application requirements and experiences."
+  },
+  "directory.order.alphabetical": {
+    "message": "Listed A–Z by school name. See each program page for application requirements and experiences."
+  },
+  "directory.schools": {
+    "message": "{count} school|{count} schools"
+  },
+  "directory.programs": {
+    "message": "{count} program|{count} programs"
+  },
+  "directory.regions": {
+    "message": "Program regions"
+  },
+  "directory.search": {
+    "message": "Search schools or programs"
+  },
+  "directory.placeholder.cn": {
+    "message": "School or program name"
+  },
+  "directory.placeholder": {
+    "message": "School name, abbreviation, or program"
+  },
+  "directory.clear": {
+    "message": "Clear search"
+  },
+  "directory.empty": {
+    "message": "No matching schools or programs."
+  },
+  "directory.emptyHint": {
+    "message": "Try a full school name, an abbreviation, or fewer keywords."
+  },
+  "directory.reset": {
+    "message": "Show all programs in this region"
+  },
+  "home.description": {
+    "message": "ECE graduate study resources and application experiences for PIN students. Browse schools and programs by region and explore admission results."
+  },
+  "home.introduction": {
+    "message": "ECE graduate study resources and application experiences for PIN students."
+  },
+  "home.schools": {
+    "message": "Find schools and programs"
+  },
+  "home.order": {
+    "message": "Browse by region, then by school name."
+  },
+  "home.resultsHeading": {
+    "message": "Explore admission results"
+  },
+  "home.resultsDescription": {
+    "message": "See fellow students’ backgrounds, program choices, and application outcomes."
+  },
+  "home.resultsLink": {
+    "message": "View admission results"
+  },
+  "home.shareHeading": {
+    "message": "Share your experience"
+  },
+  "home.shareDescription": {
+    "message": "Have a decision? Share your application result."
+  },
+  "home.community": {
+    "message": "Started by the first PIN Program graduates and maintained with fellow students."
+  },
+  "home.aboutLink": {
+    "message": "About PIN Grad and how to contribute"
+  },
+  "intro.title": {
+    "message": "About PIN Grad"
+  },
+  "intro.description": {
+    "message": "The story behind PIN Grad, how to use the resources, and how to contribute."
+  },
+  "results.title": {
+    "message": "Admission Results"
+  },
+  "submit.title": {
+    "message": "Share Results"
+  },
+  "submit.description": {
+    "message": "Share your application background and admission result for review."
+  },
+  "contact.title": {
+    "message": "Contact"
+  },
+  "contact.description": {
+    "message": "Contact the project maintainers through these channels."
+  },
+  "contact.repository": {
+    "message": "GitHub repository"
+  },
+  "contact.discord": {
+    "message": "Discord community"
+  },
+  "projects.title": {
+    "message": "Projects"
+  },
+  "resources.title": {
+    "message": "Resources"
+  },
+  "join.title": {
+    "message": "Contributing"
+  },
+  "page.comingSoon": {
+    "message": "Content is coming soon."
+  },
+  "clipboard.blocked": {
+    "message": "Copying this content is not allowed."
+  },
+  "option.other": {
+    "message": "Other"
+  },
+  "option.fall": {
+    "message": "Fall"
+  },
+  "option.spring": {
+    "message": "Spring"
+  },
+  "option.summer": {
+    "message": "Summer"
+  },
+  "option.offer": {
+    "message": "Offer"
+  },
+  "option.reject": {
+    "message": "Reject"
+  },
+  "option.waitlist": {
+    "message": "Waitlist"
+  }
+}

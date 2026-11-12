@@ -1,10 +1,12 @@
 import React, {useEffect, useState} from 'react';
 import Layout from '@theme/Layout';
+import {translate} from '@docusaurus/Translate';
 
 const DATAPOINTS_EMBED_BASE =
   'https://teable-production-9c69.up.railway.app/share/shrLvLRxwFouulwLo37/view';
 
 export default function DatapointsPage(): React.JSX.Element {
+  const title = translate({id: 'results.title', message: '录取情况'});
   const [themeMode, setThemeMode] = useState<'light' | 'dark'>('light');
 
   useEffect(() => {
@@ -35,15 +37,15 @@ export default function DatapointsPage(): React.JSX.Element {
   embedUrl.searchParams.set('theme', themeMode);
 
   return (
-    <Layout title="DataPoints">
-      <main className="pin-submit-page" aria-label="DataPoints 页面">
+    <Layout title={title}>
+      <main className="pin-submit-page" aria-label={title}>
         <section className={`pin-submit-card pin-submit-card--wide pin-submit-card--${themeMode}`}>
-          <h1>DataPoints</h1>
+          <h1>{title}</h1>
           <iframe
             key={themeMode}
             className="pin-datapoints-embed"
             src={embedUrl.toString()}
-            title="PIN Grad DataPoints"
+            title={title}
             width="100%"
             loading="lazy"
             sandbox="allow-scripts allow-same-origin allow-forms"

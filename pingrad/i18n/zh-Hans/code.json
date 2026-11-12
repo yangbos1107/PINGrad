@@ -1,0 +1,5 @@
+{
+  "theme.colorToggle.ariaLabel.mode.system": {"message": "跟随系统"},
+  "theme.navbar.mobileDropdown.collapseButton.collapseAriaLabel": {"message": "收起菜单"},
+  "theme.navbar.mobileDropdown.collapseButton.expandAriaLabel": {"message": "展开菜单"}
+}

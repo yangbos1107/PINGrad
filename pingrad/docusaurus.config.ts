@@ -1,6 +1,17 @@
 import {themes as prismThemes} from 'prism-react-renderer';
 import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
+import programCatalog, {regionSidebarItems} from './plugins/programCatalog';
+import defaultSsrTemplate from '@docusaurus/core/lib/ssg/ssgTemplate.html';
+
+// React 18 streaming SSR can insert NUL bytes into CJK text and anchor URLs.
+// Remove them before HTML minification and search indexing, without rewriting content.
+// https://github.com/facebook/docusaurus/issues/9985
+const appHtmlSlot = '<%~ it.appHtml %>';
+if (!defaultSsrTemplate.includes(appHtmlSlot)) {
+  throw new Error('Recheck the React 18 SSR compatibility fix against the updated Docusaurus template.');
+}
+const ssrTemplate = defaultSsrTemplate.replace(appHtmlSlot, "<%~ it.appHtml.replace(/\\0/g, '') %>");
 
 const githubRepoUrl = 'https://github.com/yangbos1107/PINGrad';
 const siteUrl = process.env.DOCUSAURUS_URL ?? 'https://pingrad.app';
@@ -37,6 +48,20 @@ const config: Config = {
 
   url: siteUrl,
   baseUrl,
+  ssrTemplate,
+  storage: {type: 'localStorage', namespace: true},
+  future: {
+    faster: {
+      swcJsLoader: true,
+      swcJsMinimizer: true,
+      swcHtmlMinimizer: true,
+      lightningCssMinimizer: true,
+      mdxCrossCompilerCache: true,
+      rspackBundler: true,
+      rspackPersistentCache: true,
+      gitEagerVcs: true
+    }
+  },
   customFields: {
     turnstileSiteKey: '0x4AAAAAACg_m2RmfRjOjQBX'
   },
@@ -54,11 +79,15 @@ const config: Config = {
 
   i18n: {
     defaultLocale: 'zh-Hans',
-    locales: ['zh-Hans'],
+    locales: ['zh-Hans', 'en'],
     localeConfigs: {
       'zh-Hans': {
-        label: '中文',
+        label: '简体中文',
         htmlLang: 'zh-CN'
+      },
+      en: {
+        label: 'English',
+        htmlLang: 'en'
       }
     }
   },
@@ -79,6 +108,8 @@ const config: Config = {
     ]
   ],
 
+  plugins: [programCatalog],
+
   presets: [
     [
       'classic',
@@ -86,6 +117,7 @@ const config: Config = {
         docs: {
           routeBasePath: 'docs',
           sidebarPath: './sidebars.ts',
+          sidebarItemsGenerator: regionSidebarItems,
           editUrl: `${githubRepoUrl}/edit/main/pingrad/`,
           showLastUpdateAuthor: false,
           showLastUpdateTime: true
@@ -114,32 +146,33 @@ const config: Config = {
       hideOnScroll: false,
       items: [
         {
-          to: '/docs/intro',
-          label: '项目介绍',
+          to: '/',
+          label: '选校导航',
+          activeBaseRegex: '^/(?:en/)?(?:docs/(?:us|uk|hk|sg|au|cn)(?:/|$)|$)',
           position: 'left'
         },
         {
           to: '/datapoints',
-          label: 'DataPoints',
+          label: '录取情况',
           position: 'left'
         },
         {
           to: '/submit-dp',
-          label: 'Submit DP',
+          label: '分享申请结果',
           position: 'left'
         },
         {
-          to: '/tracker',
-          label: '申请跟踪',
+          to: '/intro',
+          label: '关于',
           position: 'left'
+        },
+        {
+          type: 'search',
+          position: 'right'
         },
         {
           href: githubRepoUrl,
           label: 'GitHub',
-          position: 'right'
-        },
-        {
-          type: 'search',
           position: 'right'
         }
       ]
@@ -154,24 +187,24 @@ const config: Config = {
       style: 'light',
       links: [
         {
-          title: 'Docs',
+          title: '浏览',
           items: [
             {
-              label: '项目介绍',
-              to: '/docs/intro'
+              label: '选校导航',
+              to: '/'
             },
             {
-              label: 'DataPoints',
+              label: '录取情况',
               to: '/datapoints'
             },
             {
-              label: '申请跟踪',
-              to: '/tracker'
+              label: '分享申请结果',
+              to: '/submit-dp'
             }
           ]
         },
         {
-          title: 'Community',
+          title: '社区',
           items: [
             {
               label: 'GitHub',
@@ -179,7 +212,7 @@ const config: Config = {
             },
             {
               label: '贡献指南',
-              to: '/join'
+              to: '/intro#如何贡献'
             },
             {
               label: 'Discord 交流群',
@@ -188,7 +221,7 @@ const config: Config = {
           ]
         },
         {
-          title: 'More',
+          title: '更多',
           items: [
             {
               label: '资源',
@@ -199,7 +232,7 @@ const config: Config = {
               to: '/projects'
             },
             {
-              label: 'Contact',
+              label: '联系',
               to: '/contact'
             }
           ]

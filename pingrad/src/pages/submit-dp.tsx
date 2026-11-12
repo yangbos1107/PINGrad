@@ -1,6 +1,8 @@
 import React, {FormEvent, useCallback, useEffect, useMemo, useRef, useState} from 'react';
 import Layout from '@theme/Layout';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import Translate, {translate} from '@docusaurus/Translate';
+import {regionLabel} from '@site/src/lib/ui';
 
 const SUBMIT_ENDPOINT = 'https://api.pingrad.app/submit-dp';
 const TURNSTILE_SCRIPT_ID = 'cf-turnstile-api';
@@ -19,6 +21,7 @@ type TurnstileWidgetId = string | number;
 
 type TurnstileRenderOptions = {
   sitekey: string;
+  language: 'zh-cn' | 'en';
   callback: (token: string) => void;
   'expired-callback'?: () => void;
   'error-callback'?: () => void;
@@ -99,8 +102,27 @@ function sanitizeGpaForSubmission(rawValue: string): string {
     .replace(/\.+/g, '.');
 }
 
+function optionLabel(value: string): string {
+  switch (value) {
+    case 'US': return regionLabel('us');
+    case 'UK': return regionLabel('uk');
+    case 'SG': return regionLabel('sg');
+    case 'HK': return regionLabel('hk');
+    case 'AU': return regionLabel('au');
+    case 'Other': return translate({id: 'option.other', message: '其他'});
+    case 'Fall': return translate({id: 'option.fall', message: '秋季'});
+    case 'Spring': return translate({id: 'option.spring', message: '春季'});
+    case 'Summer': return translate({id: 'option.summer', message: '夏季'});
+    case 'Offer': return translate({id: 'option.offer', message: '录取'});
+    case 'Reject': return translate({id: 'option.reject', message: '拒绝'});
+    case 'Waitlist': return translate({id: 'option.waitlist', message: '候补'});
+    default: return value;
+  }
+}
+
 export default function SubmitDpPage(): React.JSX.Element {
-  const {siteConfig} = useDocusaurusContext();
+  const {siteConfig, i18n: {currentLocale}} = useDocusaurusContext();
+  const title = translate({id: 'submit.title', message: '分享申请结果'});
   const turnstileSiteKey =
     typeof siteConfig.customFields?.turnstileSiteKey === 'string'
       ? siteConfig.customFields.turnstileSiteKey
@@ -191,6 +213,7 @@ export default function SubmitDpPage(): React.JSX.Element {
 
     turnstileWidgetIdRef.current = window.turnstile.render(turnstileContainerRef.current, {
       sitekey: turnstileSiteKey,
+      language: currentLocale === 'en' ? 'en' : 'zh-cn',
       callback: (token: string) => {
         setTurnstileToken(token);
         setSubmitError('');
@@ -200,10 +223,10 @@ export default function SubmitDpPage(): React.JSX.Element {
       },
       'error-callback': () => {
         setTurnstileToken('');
-        setSubmitError('验证码加载失败，请刷新页面后重试。');
+        setSubmitError(translate({id: 'submit.captchaError', message: '验证码加载失败，请刷新页面后重试。'}));
       }
     });
-  }, [turnstileSiteKey]);
+  }, [turnstileSiteKey, currentLocale]);
 
   useEffect(() => {
     if (!turnstileSiteKey || typeof window === 'undefined') {
@@ -220,7 +243,7 @@ export default function SubmitDpPage(): React.JSX.Element {
       renderTurnstile();
     };
     const handleScriptError = (): void => {
-      setSubmitError('验证码脚本加载失败，请稍后重试。');
+      setSubmitError(translate({id: 'submit.captchaScriptError', message: '验证码脚本加载失败，请稍后重试。'}));
     };
 
     if (existingScript) {
@@ -261,17 +284,17 @@ export default function SubmitDpPage(): React.JSX.Element {
     setSubmitSuccess('');
 
     if (!requiredFieldsReady) {
-      setSubmitError('请填写所有必填字段。');
+      setSubmitError(translate({id: 'submit.required', message: '请填写所有必填字段。'}));
       return;
     }
 
     if (!turnstileSiteKey) {
-      setSubmitError('Turnstile site key 未配置。');
+      setSubmitError(translate({id: 'submit.captchaUnavailable', message: '验证码暂不可用，请联系维护者。'}));
       return;
     }
 
     if (!turnstileToken) {
-      setSubmitError('请先完成验证码。');
+      setSubmitError(translate({id: 'submit.captchaRequired', message: '请先完成验证码。'}));
       return;
     }
 
@@ -307,7 +330,7 @@ export default function SubmitDpPage(): React.JSX.Element {
       });
 
       if (!response.ok) {
-        let errorMessage = '提交失败，请稍后重试。';
+        let errorMessage = translate({id: 'submit.failed', message: '提交失败，请稍后重试。'});
         const rawErrorBody = await response.text();
         if (rawErrorBody) {
           try {
@@ -326,7 +349,7 @@ export default function SubmitDpPage(): React.JSX.Element {
         throw new Error(errorMessage);
       }
 
-      setSubmitSuccess('Submitted! Pending review.');
+      setSubmitSuccess(translate({id: 'submit.success', message: '提交成功，等待审核。'}));
       setForm((current) => ({
         ...INITIAL_FORM_STATE,
         country: current.country,
@@ -336,7 +359,7 @@ export default function SubmitDpPage(): React.JSX.Element {
       }));
       resetTurnstile();
     } catch (error) {
-      setSubmitError(error instanceof Error ? error.message : '提交失败，请稍后重试。');
+      setSubmitError(error instanceof Error && error.message !== 'Failed to fetch' ? error.message : translate({id: 'submit.failed', message: '提交失败，请稍后重试。'}));
     } finally {
       setIsSubmitting(false);
     }
@@ -409,34 +432,34 @@ export default function SubmitDpPage(): React.JSX.Element {
   };
 
   return (
-    <Layout title="Submit DP" description="Submit a new datapoint for review.">
+    <Layout title={title} description={translate({id: 'submit.description', message: '分享申请背景与录取结果，审核后展示。'})}>
       <main className="pin-submit-page">
-        <section className="pin-submit-card" aria-label="Submit DP form">
+        <section className="pin-submit-card" aria-label={title}>
           <header className="pin-submit-header">
-            <h1>Submit DP</h1>
-            <p>提交后会进入人工审核，审核通过后会展示在站内。</p>
+            <h1>{title}</h1>
+            <p><Translate id="submit.reviewNote">提交后会进入人工审核，审核通过后会展示在站内。</Translate></p>
           </header>
 
           <form className="pin-submit-form" onSubmit={handleSubmit}>
             <label className="pin-form-field">
-              <span>申请人 *</span>
+              <span><Translate id="submit.applicant">申请人</Translate> *</span>
               <input
                 type="text"
                 value={form.applicantName}
                 onChange={handleInputChange('applicantName')}
-                placeholder="可填昵称，不建议填真名"
+                placeholder={translate({id: 'submit.applicantPlaceholder', message: '可填昵称，不建议填真名'})}
                 required
               />
-              <p className="pin-form-hint">随意填，可以填昵称，不建议填真名。</p>
+              <p className="pin-form-hint"><Translate id="submit.applicantHint">随意填，可以填昵称，不建议填真名。</Translate></p>
             </label>
 
             <label className="pin-form-field">
-              <span>分数制 *</span>
+              <span><Translate id="submit.gpaScale">分数制</Translate> *</span>
               <select value={form.gpaScale} onChange={handleInputChange('gpaScale')} required>
-                <option value="">请选择</option>
+                <option value=""><Translate id="submit.select">请选择</Translate></option>
                 {GPA_SCALE_OPTIONS.map((option) => (
                   <option key={option} value={option}>
-                    {option}
+                    {optionLabel(option)}
                   </option>
                 ))}
               </select>
@@ -449,7 +472,7 @@ export default function SubmitDpPage(): React.JSX.Element {
                 inputMode="decimal"
                 value={form.njuptGpa}
                 onChange={handleInputChange('njuptGpa')}
-                placeholder="例如：4.23"
+                placeholder={translate({id: 'submit.njuptGpaExample', message: '例如：4.23'})}
                 required
               />
             </label>
@@ -461,167 +484,167 @@ export default function SubmitDpPage(): React.JSX.Element {
                 inputMode="decimal"
                 value={form.psuGpa}
                 onChange={handleInputChange('psuGpa')}
-                placeholder="例如：3.78"
+                placeholder={translate({id: 'submit.psuGpaExample', message: '例如：3.78'})}
               />
             </label>
 
             <label className="pin-form-field">
-              <span>国家 *</span>
+              <span><Translate id="submit.country">国家</Translate> *</span>
               <select value={form.country} onChange={handleCountryChange} required>
-                <option value="">请选择</option>
+                <option value=""><Translate id="submit.select">请选择</Translate></option>
                 {COUNTRY_OPTIONS.map((option) => (
                   <option key={option} value={option}>
-                    {option}
+                    {optionLabel(option)}
                   </option>
                 ))}
               </select>
             </label>
             {form.country === 'Other' ? (
               <label className="pin-form-field">
-                <span>国家（Other）*</span>
+                <span><Translate id="submit.countryOther">国家（其他）</Translate> *</span>
                 <input
                   type="text"
                   value={form.countryOther}
                   onChange={handleInputChange('countryOther')}
-                  placeholder="请输入自定义国家"
+                  placeholder={translate({id: 'submit.countryPlaceholder', message: '请输入自定义国家'})}
                   required
                 />
               </label>
             ) : null}
 
             <label className="pin-form-field">
-              <span>学校 *</span>
+              <span><Translate id="submit.school">学校</Translate> *</span>
               <input
                 type="text"
                 value={form.school}
                 onChange={handleInputChange('school')}
-                placeholder="例如：Carnegie Mellon University"
+                placeholder={translate({id: 'submit.schoolPlaceholder', message: '例如：Carnegie Mellon University'})}
                 required
               />
             </label>
 
             <label className="pin-form-field">
-              <span>学年 *</span>
+              <span><Translate id="submit.year">学年</Translate> *</span>
               <select value={form.academicYear} onChange={handleAcademicYearChange} required>
-                <option value="">请选择</option>
+                <option value=""><Translate id="submit.select">请选择</Translate></option>
                 {ACADEMIC_YEAR_OPTIONS.map((option) => (
                   <option key={option} value={option}>
-                    {option}
+                    {optionLabel(option)}
                   </option>
                 ))}
               </select>
             </label>
             {form.academicYear === 'Other' ? (
               <label className="pin-form-field">
-                <span>学年（Other）*</span>
+                <span><Translate id="submit.yearOther">学年（其他）</Translate> *</span>
                 <input
                   type="text"
                   value={form.academicYearOther}
                   onChange={handleInputChange('academicYearOther')}
-                  placeholder="请输入自定义学年"
+                  placeholder={translate({id: 'submit.yearPlaceholder', message: '请输入自定义学年'})}
                   required
                 />
               </label>
             ) : null}
 
             <label className="pin-form-field">
-              <span>学期 *</span>
+              <span><Translate id="submit.term">学期</Translate> *</span>
               <select value={form.term} onChange={handleTermChange} required>
-                <option value="">请选择</option>
+                <option value=""><Translate id="submit.select">请选择</Translate></option>
                 {TERM_OPTIONS.map((option) => (
                   <option key={option} value={option}>
-                    {option}
+                    {optionLabel(option)}
                   </option>
                 ))}
               </select>
             </label>
             {form.term === 'Other' ? (
               <label className="pin-form-field">
-                <span>学期（Other）*</span>
+                <span><Translate id="submit.termOther">学期（其他）</Translate> *</span>
                 <input
                   type="text"
                   value={form.termOther}
                   onChange={handleInputChange('termOther')}
-                  placeholder="请输入自定义学期"
+                  placeholder={translate({id: 'submit.termPlaceholder', message: '请输入自定义学期'})}
                   required
                 />
               </label>
             ) : null}
 
             <label className="pin-form-field">
-              <span>学位 *</span>
+              <span><Translate id="submit.degree">学位</Translate> *</span>
               <select value={form.degree} onChange={handleDegreeChange} required>
-                <option value="">请选择</option>
+                <option value=""><Translate id="submit.select">请选择</Translate></option>
                 {DEGREE_OPTIONS.map((option) => (
                   <option key={option} value={option}>
-                    {option}
+                    {optionLabel(option)}
                   </option>
                 ))}
               </select>
             </label>
             {form.degree === 'Other' ? (
               <label className="pin-form-field">
-                <span>学位（Other）*</span>
+                <span><Translate id="submit.degreeOther">学位（其他）</Translate> *</span>
                 <input
                   type="text"
                   value={form.degreeOther}
                   onChange={handleInputChange('degreeOther')}
-                  placeholder="请输入自定义学位"
+                  placeholder={translate({id: 'submit.degreePlaceholder', message: '请输入自定义学位'})}
                   required
                 />
               </label>
             ) : null}
 
             <label className="pin-form-field">
-              <span>项目 *</span>
+              <span><Translate id="submit.program">项目</Translate> *</span>
               <select value={form.program} onChange={handleProgramChange} required>
-                <option value="">请选择</option>
+                <option value=""><Translate id="submit.select">请选择</Translate></option>
                 {PROGRAM_OPTIONS.map((option) => (
                   <option key={option} value={option}>
-                    {option}
+                    {optionLabel(option)}
                   </option>
                 ))}
               </select>
             </label>
             {form.program === 'Other' ? (
               <label className="pin-form-field">
-                <span>项目（Other）*</span>
+                <span><Translate id="submit.programOther">项目（其他）</Translate> *</span>
                 <input
                   type="text"
                   value={form.programOther}
                   onChange={handleInputChange('programOther')}
-                  placeholder="请输入自定义项目"
+                  placeholder={translate({id: 'submit.programPlaceholder', message: '请输入自定义项目'})}
                   required
                 />
               </label>
             ) : null}
 
             <label className="pin-form-field">
-              <span>结果 *</span>
+              <span><Translate id="submit.result">结果</Translate> *</span>
               <select value={form.result} onChange={handleResultChange} required>
-                <option value="">请选择</option>
+                <option value=""><Translate id="submit.select">请选择</Translate></option>
                 {RESULT_OPTIONS.map((option) => (
                   <option key={option} value={option}>
-                    {option}
+                    {optionLabel(option)}
                   </option>
                 ))}
               </select>
             </label>
             {form.result === 'Other' ? (
               <label className="pin-form-field">
-                <span>结果（Other）*</span>
+                <span><Translate id="submit.resultOther">结果（其他）</Translate> *</span>
                 <input
                   type="text"
                   value={form.resultOther}
                   onChange={handleInputChange('resultOther')}
-                  placeholder="请输入自定义结果"
+                  placeholder={translate({id: 'submit.resultPlaceholder', message: '请输入自定义结果'})}
                   required
                 />
               </label>
             ) : null}
 
             <label className="pin-form-field">
-              <span>网申提交时间</span>
+              <span><Translate id="submit.applicationDate">网申提交时间</Translate></span>
               <input
                 type="date"
                 value={form.applicationDate}
@@ -630,29 +653,29 @@ export default function SubmitDpPage(): React.JSX.Element {
             </label>
 
             <label className="pin-form-field">
-              <span>结果通知时间</span>
+              <span><Translate id="submit.decisionDate">结果通知时间</Translate></span>
               <input type="date" value={form.decisionDate} onChange={handleInputChange('decisionDate')} />
             </label>
 
             <label className="pin-form-field pin-form-field--full">
-              <span>补充说明</span>
+              <span><Translate id="submit.notes">补充说明</Translate></span>
               <textarea
                 rows={4}
                 value={form.notes}
                 onChange={handleInputChange('notes')}
-                placeholder="可选：补充你的背景（托福、竞赛科研情况、2+2/3+1/4+0 等）、奖学金、面试轮次等信息"
+                placeholder={translate({id: 'submit.notesPlaceholder', message: '可选：补充你的背景（托福、竞赛科研情况、2+2/3+1/4+0 等）、奖学金、面试轮次等信息'})}
               />
             </label>
 
             <div className="pin-form-field pin-form-field--full">
-              <span>验证码 *</span>
+              <span><Translate id="submit.captcha">验证码</Translate> *</span>
               <div className="cf-turnstile" ref={turnstileContainerRef} />
               {!turnstileSiteKey ? (
                 <p className="pin-form-hint">
-                  Turnstile site key 未配置，请在配置文件中设置后再提交。
+                  <Translate id="submit.captchaUnavailable">验证码暂不可用，请联系维护者。</Translate>
                 </p>
               ) : null}
-              {!turnstileToken ? <p className="pin-form-hint">请先完成验证码再提交。</p> : null}
+              {!turnstileToken ? <p className="pin-form-hint"><Translate id="submit.captchaHint">请先完成验证码再提交。</Translate></p> : null}
             </div>
 
             {submitError ? (
@@ -668,7 +691,7 @@ export default function SubmitDpPage(): React.JSX.Element {
 
             <div className="pin-submit-actions">
               <button type="submit" className="button button--primary" disabled={!canSubmit}>
-                {isSubmitting ? 'Submitting...' : 'Submit'}
+                {isSubmitting ? translate({id: 'submit.submitting', message: '提交中…'}) : translate({id: 'submit.button', message: '提交'})}
               </button>
             </div>
           </form>

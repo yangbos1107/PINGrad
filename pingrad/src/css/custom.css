@@ -1,3 +1,4 @@
+@import './directory.css';
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 :root {
@@ -239,116 +240,6 @@ body {
   background: var(--pin-bg-gradient);
 }
 
-.pin-home {
-  margin: 0 auto;
-  max-width: 1100px;
-  padding: 3.2rem 1rem 4rem;
-}
-
-.pin-hero {
-  border: 1px solid var(--pin-border);
-  border-radius: 18px;
-  background: linear-gradient(130deg, #ffffff 0%, #f4f4f4 65%, #eef1ee 100%);
-  box-shadow: 0 18px 35px var(--pin-shadow);
-  padding: 2.4rem 2rem;
-}
-
-.pin-eyebrow {
-  margin: 0;
-  font-size: 0.78rem;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-  color: var(--pin-teal-text);
-  font-weight: 700;
-}
-
-.pin-hero h1 {
-  margin-top: 0.45rem;
-  margin-bottom: 0.8rem;
-  font-size: clamp(2rem, 3vw, 2.85rem);
-  letter-spacing: -0.03em;
-}
-
-.pin-hero p {
-  margin-bottom: 1.1rem;
-  max-width: 730px;
-  color: var(--pin-text);
-  line-height: 1.72;
-}
-
-.pin-hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.7rem;
-}
-
-.pin-card-grid {
-  margin-top: 1.4rem;
-  display: grid;
-  gap: 0.95rem;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.pin-card {
-  border: 1px solid var(--pin-border);
-  border-radius: 14px;
-  background: var(--pin-surface);
-  padding: 1rem 1rem 1.1rem;
-  text-decoration: none;
-  color: inherit;
-  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
-}
-
-.pin-card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(14, 186, 178, 0.45);
-  box-shadow: 0 14px 24px rgba(0, 0, 0, 0.09);
-  text-decoration: none;
-}
-
-.pin-card h2 {
-  margin-top: 0;
-  margin-bottom: 0.35rem;
-  font-size: 1.07rem;
-}
-
-.pin-card p {
-  margin: 0;
-  font-size: 0.95rem;
-  line-height: 1.6;
-  color: var(--pin-muted-text);
-}
-
-@media (max-width: 996px) {
-  .pin-home {
-    padding-top: 1.5rem;
-  }
-
-  .pin-card-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 640px) {
-  .pin-hero {
-    padding: 1.4rem 1rem;
-  }
-
-  .pin-hero-actions {
-    width: 100%;
-    flex-direction: column;
-  }
-
-  .pin-hero-actions .button {
-    width: 100%;
-    justify-content: center;
-  }
-
-  .pin-card-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
 .pin-blank-page {
   min-height: calc(100vh - var(--ifm-navbar-height));
   display: grid;
@@ -534,10 +425,6 @@ body {
 
 [data-theme='dark'] .theme-doc-markdown table thead tr {
   background: rgba(17, 222, 213, 0.2);
-}
-
-[data-theme='dark'] .pin-hero {
-  background: linear-gradient(130deg, #20282b 0%, #1b2325 65%, #171d1f 100%);
 }
 
 [data-theme='dark'] .footer.footer--light {
